@@ -3,8 +3,18 @@
 import Link from "next/link";
 import { Search, Heart, User, ShoppingBag, MapPin, Pencil } from "lucide-react";
 import { LogoLink } from "../logo/LogoLink";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function Navbar() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
+
+  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
   return (
     <>
       {/* ROW 1: Logo, Shipping Info, Search, Icons (Scrolls away) */}
@@ -44,6 +54,9 @@ export function Navbar() {
                 <input
                   type="text"
                   placeholder="Search for Earrings..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={handleSearch}
                   className="block w-full pl-10 pr-3 py-2.5 border border-gray-200 rounded-lg leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-[#C82245] focus:border-[#C82245] sm:text-sm transition-colors"
                 />
               </div>
@@ -75,20 +88,18 @@ export function Navbar() {
       </header>
 
       {/* ROW 2: Category Navigation (Sticky) */}
-      <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all">
+      <nav className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm transition-all">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
           {/* Scrollable container for mobile/tablet */}
-          <div className="flex items-center space-x-6 lg:space-x-10 overflow-x-auto py-3 scrollbar-hide text-[13px] font-medium text-[#2d2d2d] whitespace-nowrap">
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">Necklaces</Link>
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">Earrings</Link>
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">Bangles</Link>
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">Accessories</Link>
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">92.5 Silver</Link>
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">Wedding Store</Link>
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">Occasions</Link>
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">Collection</Link>
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">Happy Customers</Link>
-            <Link href="/shop" className="hover:text-[#C82245] transition-colors">Careers</Link>
+          <div className="flex justify-center items-center space-x-8 lg:space-x-12 overflow-x-auto py-4 scrollbar-hide text-sm tracking-wide font-medium text-neutral-800 whitespace-nowrap">
+            <Link href="/collections/necklaces" className="hover:text-[#C82245] transition-colors uppercase text-xs">Necklaces</Link>
+            <Link href="/collections/earrings" className="hover:text-[#C82245] transition-colors uppercase text-xs">Earrings</Link>
+            <Link href="/collections/bangles" className="hover:text-[#C82245] transition-colors uppercase text-xs">Bangles</Link>
+            <Link href="/collections/accessories" className="hover:text-[#C82245] transition-colors uppercase text-xs">Accessories</Link>
+            <Link href="/collections/wedding-store" className="hover:text-[#C82245] transition-colors uppercase text-xs">Wedding Store</Link>
+            <Link href="/collections/occasions" className="hover:text-[#C82245] transition-colors uppercase text-xs">Occasions</Link>
+            <Link href="/page/happy-customers" className="hover:text-[#C82245] transition-colors uppercase text-xs">Happy Customers</Link>
+            <Link href="/page/careers" className="hover:text-[#C82245] transition-colors uppercase text-xs">Careers</Link>
           </div>
         </div>
       </nav>

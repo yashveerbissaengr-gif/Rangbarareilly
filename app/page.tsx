@@ -33,7 +33,7 @@ export default function HomePage() {
               </div>
 
               <Link href="/shop" className="inline-flex items-center justify-center bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-black px-10 py-3.5 text-[11px] font-bold uppercase tracking-widest hover:opacity-90 transition-opacity">
-                SHOP COLLECTION <ArrowRight className="w-4 h-4 ml-2" />
+                BROWSE CATEGORY <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </div>
           </div>
@@ -84,48 +84,93 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* 10. BEST SELLERS */}
+        <section className="py-20 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-end mb-10 border-b border-gray-100 pb-4">
+            <div>
+              <h2 className="text-xl md:text-2xl font-serif text-[#1e1e1e] uppercase tracking-widest">Best Sellers</h2>
+              <p className="text-gray-500 font-light text-sm mt-1">Our most loved styles, chosen by you.</p>
+            </div>
+            <Link href="/shop" className="hidden md:flex items-center text-[10px] font-bold uppercase tracking-widest hover:text-[#C82245] transition-colors group">
+              View All <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {[
+              { title: "Diamond Halo Ring", price: 2999 },
+              { title: "Gold Chain Bracelet", price: 1499 },
+              { title: "Classic Pearl Studs", price: 899 },
+              { title: "Emerald Drop Earrings", price: 3499 },
+            ].map((prod, i) => (
+              <Link href={`/products/${prod.title.toLowerCase().replace(/ /g, '-')}`} key={i} className="group text-left block">
+                <div className="aspect-[4/5] bg-white shadow-sm border border-gray-100 relative mb-3 overflow-hidden flex items-center justify-center transition-all group-hover:shadow-lg">
+                  <AnimatedImage 
+                    src="/images/product-necklace.jpg" 
+                    alt={prod.title} 
+                    animation="slide-up"
+                    delay={i * 0.1}
+                    containerClassName="w-full h-full flex items-center justify-center bg-transparent"
+                    className="!w-3/4 !h-3/4 !object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500" 
+                  />
+                </div>
+                <h3 className="text-[11px] font-bold text-[#1e1e1e] group-hover:text-[#E30613] transition-colors">{prod.title}</h3>
+                <p className="text-[11px] text-[#666] mt-0.5">₹{prod.price.toLocaleString('en-IN')}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         {/* 5. CATEGORY HIGHLIGHT (TRENDING) */}
         <section className="py-20 md:py-28 bg-[#FAFAFA]">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+            <div className="flex flex-col gap-24 md:gap-32">
               
-              {/* Box 1 */}
-              <div className="flex bg-white shadow-sm hover:shadow-xl transition-shadow duration-500">
-                <div className="w-1/2 p-6 md:p-10 flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl font-serif mb-3 md:mb-4">Trending Now</h3>
-                  <p className="text-gray-500 text-xs md:text-sm mb-6 font-light">Explore our most loved pieces this season.</p>
-                  <Link href="/shop" className="text-[10px] font-bold uppercase tracking-widest border-b border-black w-max pb-1 hover:text-[#C82245] hover:border-[#C82245] transition-colors">
-                    Explore
+              {/* Asymmetric Box 1 */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                <div className="lg:col-span-5 flex flex-col justify-center order-2 lg:order-1 lg:pl-12">
+                  <h3 className="text-3xl md:text-5xl font-serif text-[#1e1e1e] tracking-wide mb-6">Trending Now</h3>
+                  <p className="text-[#666] text-base md:text-lg mb-10 font-light leading-[1.6]">
+                    Explore our most loved pieces this season. Crafted for elegance and everyday luxury.
+                  </p>
+                  <Link href="/shop" className="text-xs font-bold uppercase tracking-[0.2em] border-b-2 border-transparent w-max pb-1 hover:border-[#1e1e1e] transition-all duration-300">
+                    EXPLORE
                   </Link>
                 </div>
-                <div className="w-1/2">
-                  <AnimatedImage 
-                    src="/images/product-earrings.jpg" 
-                    alt="Trending" 
-                    animation="pan"
-                    containerClassName="w-full h-full"
-                    className="hover:scale-105 transition-transform duration-1000" 
-                  />
+                <div className="lg:col-span-7 order-1 lg:order-2">
+                  <div className="aspect-[4/3] w-full relative overflow-hidden bg-[#FBFBFA]">
+                    <AnimatedImage 
+                      src="/images/product-earrings.jpg" 
+                      alt="Trending" 
+                      animation="pan"
+                      containerClassName="w-full h-full"
+                      className="object-cover w-full h-full hover:scale-103 transition-transform duration-700 ease-out" 
+                    />
+                  </div>
                 </div>
               </div>
               
-              {/* Box 2 */}
-              <div className="flex bg-white shadow-sm hover:shadow-xl transition-shadow duration-500">
-                <div className="w-1/2 p-6 md:p-10 flex flex-col justify-center">
-                  <h3 className="text-2xl md:text-3xl font-serif mb-3 md:mb-4">Sunlit Layers</h3>
-                  <p className="text-gray-500 text-xs md:text-sm mb-6 font-light">Layered necklaces for an effortless look.</p>
-                  <Link href="/shop" className="text-[10px] font-bold uppercase tracking-widest border-b border-black w-max pb-1 hover:text-[#C82245] hover:border-[#C82245] transition-colors">
-                    Explore
-                  </Link>
+              {/* Asymmetric Box 2 */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
+                <div className="lg:col-span-7">
+                  <div className="aspect-[4/3] w-full relative overflow-hidden bg-[#FBFBFA]">
+                    <AnimatedImage 
+                      src="/images/product-ring.jpg" 
+                      alt="Sunlit" 
+                      animation="zoom-out"
+                      containerClassName="w-full h-full"
+                      className="object-cover w-full h-full hover:scale-103 transition-transform duration-700 ease-out" 
+                    />
+                  </div>
                 </div>
-                <div className="w-1/2">
-                  <AnimatedImage 
-                    src="/images/product-ring.jpg" 
-                    alt="Sunlit" 
-                    animation="zoom-out"
-                    containerClassName="w-full h-full"
-                    className="hover:scale-105 transition-transform duration-1000" 
-                  />
+                <div className="lg:col-span-5 flex flex-col justify-center lg:pr-12">
+                  <h3 className="text-3xl md:text-5xl font-serif text-[#1e1e1e] tracking-wide mb-6">Sunlit Layers</h3>
+                  <p className="text-[#666] text-base md:text-lg mb-10 font-light leading-[1.6]">
+                    Layered necklaces for an effortless look. Perfect for catching the light at every angle.
+                  </p>
+                  <Link href="/shop" className="text-xs font-bold uppercase tracking-[0.2em] border-b-2 border-transparent w-max pb-1 hover:border-[#1e1e1e] transition-all duration-300">
+                    EXPLORE
+                  </Link>
                 </div>
               </div>
             </div>
@@ -145,29 +190,33 @@ export default function HomePage() {
             </div>
 
             <div className="relative">
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                 {[
                   { title: "Pearl Huggies", price: 1199 },
                   { title: "Golden Heart Drops", price: 1299 },
                   { title: "Mini Flora Studs", price: 1099 },
-                  { title: "Twist Hoops", price: 1299 },
-                  { title: "Ruby Glow Ring", price: 1399 },
                 ].map((prod, i) => (
-                  <Link href={`/products/${prod.title.toLowerCase().replace(/ /g, '-')}`} key={i} className="group block text-left">
-                    <div className="aspect-square bg-white border border-gray-100 shadow-sm relative mb-3 overflow-hidden rounded flex items-center justify-center transition-all group-hover:shadow-lg">
-                      <div className="absolute top-2 left-2 bg-white px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider z-10 border border-gray-100">NEW</div>
-                      <button className="absolute top-2 right-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity hover:text-[#E30613]"><Heart className="w-4 h-4 text-gray-400" /></button>
+                  <Link href={`/products/${prod.title.toLowerCase().replace(/ /g, '-')}`} key={i} className="group block text-left flex flex-col space-y-4">
+                    <div className="aspect-[4/5] bg-[#FBFBFA] relative overflow-hidden flex items-center justify-center">
+                      <button className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity hover:text-[#C82245]">
+                        <Heart className="w-5 h-5 text-gray-400" />
+                      </button>
                       <AnimatedImage 
                         src="/images/product-necklace.jpg" 
                         alt={prod.title} 
                         animation="slide-up"
                         delay={i * 0.15}
                         containerClassName="w-full h-full flex items-center justify-center bg-transparent"
-                        className="!w-3/4 !h-3/4 !object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500" 
+                        className="object-cover w-full h-full hover:scale-103 transition-transform duration-700 ease-out" 
                       />
                     </div>
-                    <h3 className="text-[11px] font-bold text-[#1e1e1e] group-hover:text-[#E30613] transition-colors">{prod.title}</h3>
-                    <p className="text-[11px] text-[#666] mt-0.5">₹{prod.price.toLocaleString('en-IN')}</p>
+                    <div className="flex flex-col space-y-1">
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C82245] mb-1">
+                        NEW
+                      </span>
+                      <h3 className="font-serif text-lg md:text-xl text-neutral-800 tracking-wide font-medium group-hover:text-[#C82245] transition-colors">{prod.title}</h3>
+                      <p className="font-sans text-base text-neutral-600 font-light">₹{prod.price.toLocaleString('en-IN')}</p>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -269,42 +318,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 10. BEST SELLERS */}
-        <section className="py-20 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-end mb-10 border-b border-gray-100 pb-4">
-            <div>
-              <h2 className="text-xl md:text-2xl font-serif text-[#1e1e1e] uppercase tracking-widest">Best Sellers</h2>
-              <p className="text-gray-500 font-light text-sm mt-1">Our most loved styles, chosen by you.</p>
-            </div>
-            <Link href="/shop" className="hidden md:flex items-center text-[10px] font-bold uppercase tracking-widest hover:text-[#C82245] transition-colors group">
-              View All <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { title: "Diamond Halo Ring", price: 2999 },
-              { title: "Gold Chain Bracelet", price: 1499 },
-              { title: "Classic Pearl Studs", price: 899 },
-              { title: "Emerald Drop Earrings", price: 3499 },
-            ].map((prod, i) => (
-              <Link href={`/products/${prod.title.toLowerCase().replace(/ /g, '-')}`} key={i} className="group text-left block">
-                <div className="aspect-[4/5] bg-white shadow-sm border border-gray-100 relative mb-3 overflow-hidden flex items-center justify-center transition-all group-hover:shadow-lg">
-                  <AnimatedImage 
-                    src="/images/product-necklace.jpg" 
-                    alt={prod.title} 
-                    animation="slide-up"
-                    delay={i * 0.1}
-                    containerClassName="w-full h-full flex items-center justify-center bg-transparent"
-                    className="!w-3/4 !h-3/4 !object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-500" 
-                  />
-                </div>
-                <h3 className="text-[11px] font-bold text-[#1e1e1e] group-hover:text-[#E30613] transition-colors">{prod.title}</h3>
-                <p className="text-[11px] text-[#666] mt-0.5">₹{prod.price.toLocaleString('en-IN')}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
+
 
         {/* 11. BRAND PROMISE / MANIFESTO */}
         <section className="py-24 bg-white border-t border-gray-100 text-center">
@@ -343,44 +357,35 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* 12. STAY IN THE LOOP */}
-        <section className="py-20 md:py-28 bg-[#111111] text-white">
+        {/* 12. WHATSAPP CHANNEL */}
+        <section className="py-12 bg-[#F9F6F0]">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-10">
+            <div className="relative overflow-hidden bg-white border border-[#E5E0D8] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_10px_40px_-10px_rgba(200,34,69,0.1)]">
+              {/* Background Accents */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#C82245]/5 rounded-full blur-[60px] pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#25D366]/10 rounded-full blur-[60px] pointer-events-none" />
               
-              <div className="w-full md:w-1/2">
-                <h2 className="text-3xl md:text-5xl font-serif mb-4 text-[#D4AF37]">Join The Club.</h2>
-                <p className="text-gray-400 font-light text-sm md:text-base mb-8 max-w-md">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
-                <div className="flex w-full max-w-md">
-                  <input type="email" placeholder="Enter your email" className="bg-transparent border-b border-gray-600 px-0 py-2 w-full text-white placeholder-gray-500 focus:outline-none focus:border-[#D4AF37] text-sm transition-colors" />
-                  <button className="bg-gradient-to-r from-[#D4AF37] to-[#F3E5AB] text-black px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:opacity-90 transition-opacity whitespace-nowrap ml-4">
-                    Subscribe
-                  </button>
+              <div className="relative z-10 flex items-center gap-6">
+                <div className="hidden sm:flex w-16 h-16 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 items-center justify-center">
+                   <svg className="w-8 h-8 fill-[#25D366]" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-xl md:text-2xl font-serif text-[#1e1e1e]">Join Our WhatsApp Channel</h3>
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C82245] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#C82245]"></span>
+                    </span>
+                  </div>
+                  <p className="text-[#666] text-sm max-w-lg">Join for our latest product drops, exclusive VIP deals, and early access.</p>
                 </div>
               </div>
-
-              <div className="w-full lg:w-1/3 flex justify-between px-0 lg:px-8">
-                {[
-                  { icon: "🎁", title: "Exclusive Offers", sub: "Just for you" },
-                  { icon: "✉️", title: "Early Access", sub: "New launches" },
-                  { icon: "✨", title: "Style Inspiration", sub: "Delivered to you" },
-                ].map((perk, i) => (
-                  <div key={i} className="flex flex-col items-center text-center">
-                    <div className="text-2xl mb-2 grayscale opacity-80">{perk.icon}</div>
-                    <h4 className="text-[9px] font-bold uppercase text-[#1e1e1e]">{perk.title}</h4>
-                    <p className="text-[9px] text-[#666]">{perk.sub}</p>
-                  </div>
-                ))}
-              </div>
-
-              <div className="w-full lg:w-1/3 h-48 lg:h-64 rounded-lg overflow-hidden hidden md:block">
-                <AnimatedImage 
-                  src="/images/product-ring.jpg" 
-                  alt="Stay in loop" 
-                  animation="zoom-out"
-                  containerClassName="w-full h-full"
-                  className="hover:scale-105 transition-transform duration-1000" 
-                />
+              
+              <div className="relative z-10 w-full md:w-auto flex-shrink-0">
+                <a href="#" className="w-full md:w-auto inline-flex items-center justify-center gap-2 bg-[#C82245] text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#A81A38] hover:shadow-[0_10px_20px_rgba(200,34,69,0.3)] hover:-translate-y-0.5 transition-all duration-300">
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                  Subscribe Now
+                </a>
               </div>
 
             </div>

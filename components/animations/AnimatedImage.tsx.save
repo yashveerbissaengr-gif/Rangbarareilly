@@ -21,7 +21,7 @@ export function AnimatedImage({
   delay = 0,
 }: AnimatedImageProps) {
   // Define animation variants based on the requested animation type
-  const variants: Record<string, Variants> = {
+  const variants = {
     fade: {
       hidden: { opacity: 0 },
       visible: { opacity: 1, transition: { duration: 0.8, delay, ease: "easeOut" } },
@@ -56,3 +56,37 @@ export function AnimatedImage({
     </motion.div>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

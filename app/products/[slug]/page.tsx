@@ -17,9 +17,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     originalPrice: 1599,
     description: "Our signature piece, handcrafted to perfection. Featuring a timeless design that seamlessly blends classic elegance with modern wearability. Perfect for everyday luxury.",
     images: [
-      "https://images.unsplash.com/photo-1599643478524-fb66f7ca066b?w=800&q=80",
-      "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80",
-      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+      "/images/product-earrings.jpg",
+      "/images/product-necklace.jpg",
+      "/images/product-ring.jpg",
     ],
     features: ["18k Gold Plated", "Hypoallergenic", "Water Resistant", "Handcrafted"],
   };
