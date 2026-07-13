@@ -1,76 +1,80 @@
-import { PageTransition } from "@/components/animations/PageTransition";
+import { Metadata } from 'next';
+import { Heading, Text } from '@/components/ui/Typography';
+import { AccordionItem } from '@/components/ui/Accordion';
+
+export const metadata: Metadata = {
+  title: 'Contact Us | GLINT',
+  description: 'Get in touch with the GLINT customer care team.',
+};
 
 export default function ContactPage() {
   return (
-    <PageTransition>
-      <div className="bg-warm-white min-h-screen py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-serif text-dark-charcoal uppercase tracking-widest mb-4">
-              Contact Us
-            </h1>
-            <p className="text-secondary-text max-w-2xl mx-auto">
-              We are here to assist you with any inquiries regarding our collections, bespoke services, or your recent orders.
-            </p>
+    <div className="flex flex-col w-full min-h-screen bg-glint-ivory pt-24">
+      {/* Header Section */}
+      <div className="w-full flex flex-col items-center text-center px-6 py-24 border-b border-glint-charcoal/10">
+        <Heading as="h1" className="text-4xl md:text-5xl text-glint-charcoal mb-6">
+          Contact Us
+        </Heading>
+        <Text className="max-w-xl text-glint-charcoal/80 text-lg">
+          We are here to assist you with styling advice, order inquiries, and repairs.
+        </Text>
+      </div>
+
+      <div className="w-full max-w-[1200px] mx-auto px-6 py-24 flex flex-col lg:flex-row gap-16 lg:gap-24">
+        {/* Contact Info */}
+        <div className="w-full lg:w-1/3 flex flex-col space-y-12">
+          <div>
+            <Text className="text-xs uppercase tracking-widest text-glint-charcoal/60 mb-2">
+              Email
+            </Text>
+            <Text className="text-glint-charcoal text-lg">
+              care@glintjewelry.com
+            </Text>
+            <Text className="text-glint-charcoal/60 text-sm mt-1">
+              Expect a reply within 24 hours.
+            </Text>
           </div>
+          
+          <div>
+            <Text className="text-xs uppercase tracking-widest text-glint-charcoal/60 mb-2">
+              Call Us
+            </Text>
+            <Text className="text-glint-charcoal text-lg">
+              +1 (800) 555-0199
+            </Text>
+            <Text className="text-glint-charcoal/60 text-sm mt-1">
+              Mon-Fri, 9am - 6pm EST
+            </Text>
+          </div>
+        </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-2xl font-serif text-dark-charcoal uppercase tracking-widest mb-8">
-                Send a Message
-              </h2>
-              <form className="space-y-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-dark-charcoal uppercase tracking-widest mb-2">Name</label>
-                  <input type="text" id="name" className="w-full border-border bg-white px-4 py-3 focus:ring-brand-red focus:border-brand-red transition-colors" />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-dark-charcoal uppercase tracking-widest mb-2">Email</label>
-                  <input type="email" id="email" className="w-full border-border bg-white px-4 py-3 focus:ring-brand-red focus:border-brand-red transition-colors" />
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-dark-charcoal uppercase tracking-widest mb-2">Message</label>
-                  <textarea id="message" rows={5} className="w-full border-border bg-white px-4 py-3 focus:ring-brand-red focus:border-brand-red transition-colors"></textarea>
-                </div>
-                <button type="submit" className="bg-dark-charcoal text-white px-8 py-4 uppercase tracking-widest text-sm hover:bg-brand-red transition-colors w-full sm:w-auto">
-                  Submit Inquiry
-                </button>
-              </form>
-            </div>
+        {/* FAQ Accordions */}
+        <div className="w-full lg:w-2/3 flex flex-col">
+          <Heading as="h2" className="text-2xl text-glint-charcoal mb-8">
+            Frequently Asked Questions
+          </Heading>
+          
+          <div className="space-y-4">
+            <AccordionItem title="Do you ship internationally?">
+              <Text className="pt-4 pb-2 text-glint-charcoal/80">
+                Yes, we offer complimentary express shipping worldwide. Duties and taxes are calculated at checkout.
+              </Text>
+            </AccordionItem>
+            
+            <AccordionItem title="What is your return policy?">
+              <Text className="pt-4 pb-2 text-glint-charcoal/80">
+                We accept returns on all unworn items within 30 days of delivery. Custom pieces and engraved items are final sale.
+              </Text>
+            </AccordionItem>
 
-            <div className="bg-warm-ivory p-10 lg:p-12 border border-border">
-              <h2 className="text-2xl font-serif text-dark-charcoal uppercase tracking-widest mb-8">
-                Client Services
-              </h2>
-              
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-sm font-bold text-dark-charcoal uppercase tracking-widest mb-2">Email</h3>
-                  <a href="mailto:concierge@rangbareilly.com" className="text-brand-red hover:text-red-800 transition-colors">
-                    concierge@rangbareilly.com
-                  </a>
-                </div>
-                
-                <div>
-                  <h3 className="text-sm font-bold text-dark-charcoal uppercase tracking-widest mb-2">Phone</h3>
-                  <p className="text-secondary-text">+91 800 123 4567</p>
-                  <p className="text-sm text-secondary-text mt-1">Monday to Saturday, 10:00 AM - 7:00 PM IST</p>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-dark-charcoal uppercase tracking-widest mb-2">Flagship Boutique</h3>
-                  <p className="text-secondary-text">
-                    123 Heritage Row, <br />
-                    Connaught Place, <br />
-                    New Delhi, 110001 <br />
-                    India
-                  </p>
-                </div>
-              </div>
-            </div>
+            <AccordionItem title="Do you offer a warranty?">
+              <Text className="pt-4 pb-2 text-glint-charcoal/80">
+                All GLINT pieces come with a 2-year warranty covering manufacturing defects. We also offer lifetime complimentary cleaning at our flagship locations.
+              </Text>
+            </AccordionItem>
           </div>
         </div>
       </div>
-    </PageTransition>
+    </div>
   );
 }

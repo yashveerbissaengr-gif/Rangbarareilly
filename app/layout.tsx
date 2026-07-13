@@ -1,26 +1,33 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Inter, Playfair_Display, Bodoni_Moda, Montserrat } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/lib/context/CartContext";
+import { CartDrawer } from "@/components/cart/CartDrawer";
 
-const cormorant = Cormorant_Garamond({
-  weight: ["300", "400", "500", "600", "700"],
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  variable: "--font-cormorant",
 });
 
-const manrope = Manrope({
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  variable: "--font-manrope",
+});
+
+const bodoni = Bodoni_Moda({
+  variable: "--font-bodoni",
+  subsets: ["latin"],
+});
+
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Rangbareilly | Luxury Jewellery",
-  description: "Premium fashion jewellery brand that feels warm, luxurious, youthful and trustworthy.",
+  title: "GLINT | Small Sparks. Everyday.",
+  description: "Premium minimal jewelry brand focused on timeless everyday pieces.",
 };
-
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 
 export default function RootLayout({
   children,
@@ -28,15 +35,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${cormorant.variable} ${manrope.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col font-sans">
-        <AnnouncementBar />
-        <Navbar />
-        <main className="flex-1 flex flex-col">{children}</main>
-        <Footer />
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} ${playfair.variable} ${bodoni.variable} ${montserrat.variable} antialiased min-h-screen flex flex-col bg-glint-ivory`}>
+        <CartProvider>
+          <CartDrawer />
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

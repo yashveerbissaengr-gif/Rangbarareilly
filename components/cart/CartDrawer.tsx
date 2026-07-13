@@ -1,166 +1,121 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { type Product } from "@/types";
+import React, { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
+import { useCart } from "@/lib/context/CartContext";
+import { Heading, Text } from "../ui/Typography";
+import { Button } from "../ui/Button";
+import { CartLineItem } from "./CartLineItem";
+import { createCheckout } from "@/lib/shopify";
 
-// Dummy data for cart items
-const dummyCartItems = [
-  {
-    id: "1",
-    product: {
-      id: "1",
-      title: "Heritage Diamond Necklace",
-      slug: "heritage-diamond-necklace",
-      base_price: 1500,
-      images: [],
-      is_active: true,
-    } as Product,
-    quantity: 1,
-  },
-  {
-    id: "2",
-    product: {
-      id: "2",
-      title: "Royal Emerald Ring",
-      slug: "royal-emerald-ring",
-      base_price: 950,
-      images: [],
-      is_active: true,
-    } as Product,
-    quantity: 2,
-  },
-];
+export function CartDrawer() {
+  const { isDrawerOpen, closeDrawer, items, subtotal } = useCart();
 
-interface CartDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   // Prevent scrolling when drawer is open
   useEffect(() => {
-    if (isOpen) {
+    if (isDrawerOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "unset";
     };
-  }, [isOpen]);
+  }, [isDrawerOpen]);
 
-  if (!isOpen) return null;
-
-  const total = dummyCartItems.reduce((acc, item) => acc + item.product.base_price * item.quantity, 0);
+  const handleCheckout = async () => {
+    // In a real app, this redirects to the Shopify checkout URL
+    const checkoutUrl = await createCheckout(items);
+    if (checkoutUrl) {
+      window.location.href = checkoutUrl;
+    } else {
+      alert("Checkout simulation. In production, this directs to Shopify.");
+    }
+  };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden">
-      {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-black/40 transition-opacity" 
-        onClick={onClose}
-        aria-hidden="true"
-      />
+    <AnimatePresence>
+      {isDrawerOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={closeDrawer}
+            className="fixed inset-0 bg-glint-charcoal/40 z-50 backdrop-blur-sm"
+            aria-hidden="true"
+          />
 
-      {/* Drawer */}
-      <div className="absolute inset-y-0 right-0 max-w-full flex">
-        <div className="w-screen max-w-md transform transition ease-in-out duration-500 sm:duration-700 bg-warm-white shadow-xl flex flex-col">
-          {/* Header */}
-          <div className="px-4 py-6 border-b border-border sm:px-6 flex items-start justify-between">
-            <h2 className="text-xl font-serif text-dark-charcoal uppercase tracking-widest">
-              Your Cart
-            </h2>
-            <button
-              onClick={onClose}
-              className="text-secondary-text hover:text-brand-red transition-colors"
-            >
-              <span className="sr-only">Close panel</span>
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Cart Items */}
-          <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
-            <div className="flow-root">
-              <ul className="-my-6 divide-y divide-border">
-                {dummyCartItems.map((item) => (
-                  <li key={item.id} className="py-6 flex">
-                    <div className="flex-shrink-0 w-24 h-24 border border-border bg-warm-ivory rounded-md overflow-hidden relative">
-                      {item.product.images[0] ? (
-                        <Image
-                          src={item.product.images[0].url}
-                          alt={item.product.images[0].alt_text || item.product.title}
-                          fill
-                          className="object-cover object-center"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center text-xs text-secondary-text">No Image</div>
-                      )}
-                    </div>
-
-                    <div className="ml-4 flex-1 flex flex-col justify-between">
-                      <div>
-                        <div className="flex justify-between text-base font-medium text-dark-charcoal">
-                          <h3 className="font-serif hover:text-brand-red line-clamp-2">
-                            <Link href={`/products/${item.product.slug}`} onClick={onClose}>
-                              {item.product.title}
-                            </Link>
-                          </h3>
-                          <p className="ml-4">${(item.product.base_price * item.quantity).toFixed(2)}</p>
-                        </div>
-                        <p className="mt-1 text-sm text-secondary-text uppercase text-[10px] tracking-wider">
-                          Yellow Gold
-                        </p>
-                      </div>
-                      <div className="flex items-center justify-between text-sm">
-                        <div className="flex items-center border border-border">
-                          <button className="px-3 py-1 text-dark-charcoal hover:bg-warm-ivory transition-colors">-</button>
-                          <span className="px-3 py-1 border-x border-border">{item.quantity}</span>
-                          <button className="px-3 py-1 text-dark-charcoal hover:bg-warm-ivory transition-colors">+</button>
-                        </div>
-                        <button type="button" className="font-medium text-secondary-text hover:text-brand-red transition-colors text-xs uppercase tracking-widest border-b border-transparent hover:border-brand-red pb-0.5">
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Footer */}
-          <div className="border-t border-border px-4 py-6 sm:px-6 bg-white">
-            <div className="flex justify-between text-base font-medium text-dark-charcoal mb-4">
-              <p className="uppercase tracking-widest text-sm">Subtotal</p>
-              <p>${total.toFixed(2)}</p>
-            </div>
-            <p className="mt-0.5 text-sm text-secondary-text mb-6">
-              Shipping and taxes calculated at checkout.
-            </p>
-            <div className="flex flex-col gap-3">
-              <Link
-                href="/checkout"
-                onClick={onClose}
-                className="flex items-center justify-center px-6 py-4 border border-transparent rounded-xl shadow-sm text-base font-medium text-white bg-brand-red hover:bg-red-800 transition-colors uppercase tracking-widest"
+          {/* Drawer */}
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl z-50 flex flex-col"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Shopping Cart"
+          >
+            {/* Header */}
+            <div className="flex items-center justify-between px-6 py-6 border-b border-glint-charcoal/10">
+              <Heading as="h2" className="text-xl text-glint-charcoal">
+                Your Cart
+              </Heading>
+              <button
+                onClick={closeDrawer}
+                className="text-glint-charcoal hover:text-glint-gold transition-colors p-2 -mr-2"
+                aria-label="Close cart"
               >
-                Checkout
-              </Link>
-              <Link
-                href="/cart"
-                onClick={onClose}
-                className="flex items-center justify-center px-6 py-4 border border-dark-charcoal rounded-xl text-base font-medium text-dark-charcoal bg-transparent hover:bg-dark-charcoal hover:text-white transition-colors uppercase tracking-widest"
-              >
-                View Cart
-              </Link>
+                <X size={24} strokeWidth={1.5} />
+              </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+            {/* Items */}
+            <div className="flex-1 overflow-y-auto px-6 py-2 no-scrollbar">
+              {items.length === 0 ? (
+                <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
+                  <Text className="text-glint-charcoal/60">
+                    Your cart is currently empty.
+                  </Text>
+                  <Button variant="outline" onClick={closeDrawer}>
+                    Continue Shopping
+                  </Button>
+                </div>
+              ) : (
+                <div className="flex flex-col">
+                  {items.map((item) => (
+                    <CartLineItem key={item.id} item={item} />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Footer */}
+            {items.length > 0 && (
+              <div className="border-t border-glint-charcoal/10 px-6 py-6 bg-glint-ivory/30">
+                <div className="flex justify-between items-center mb-6">
+                  <Text className="text-glint-charcoal uppercase tracking-widest text-sm">
+                    Subtotal
+                  </Text>
+                  <Text className="text-glint-charcoal text-lg font-medium">
+                    ₹{subtotal}
+                  </Text>
+                </div>
+                <Text className="text-glint-charcoal/60 text-xs mb-6 text-center">
+                  Shipping & taxes calculated at checkout
+                </Text>
+                <Button onClick={handleCheckout} className="w-full h-14">
+                  Checkout
+                </Button>
+              </div>
+            )}
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
 }

@@ -1,10 +1,40 @@
+export interface ProductVariant {
+  id: string;
+  name: string; // e.g., "18k Yellow Gold", "Silver"
+  sku: string;
+  priceDelta: number;
+  stock: number;
+}
+
+export interface ProductImage {
+  url: string;
+  alt: string;
+  isPrimary: boolean;
+}
+
 export interface Product {
   id: string;
-  title: string;
   slug: string;
-  description?: string;
-  base_price: number;
-  images: { url: string; alt_text?: string; is_primary?: boolean }[];
-  category?: { name: string; slug: string };
-  is_active: boolean;
+  title: string;
+  description: string;
+  material: string;
+  care: string;
+  shipping: string;
+  returns: string;
+  price: number;
+  compareAtPrice?: number;
+  collection: string;
+  images: ProductImage[];
+  variants: ProductVariant[];
+  rating: number;
+  reviewCount: number;
+  tags: string[];
+  isNewArrival?: boolean;
+  isBestSeller?: boolean;
+}
+
+export interface CartItem {
+  product: Product;
+  selectedVariant: ProductVariant;
+  quantity: number;
 }

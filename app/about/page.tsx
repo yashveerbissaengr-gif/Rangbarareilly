@@ -1,60 +1,54 @@
-import { PageTransition } from "@/components/animations/PageTransition";
-import Image from "next/image";
+import { Metadata } from 'next';
+import { Heading, Text } from '@/components/ui/Typography';
+import { Navigation } from '@/components/blocks/Navigation';
+import { Footer } from '@/components/blocks/Footer';
+
+export const metadata: Metadata = {
+  title: 'Our Story | GLINT',
+  description: 'The story behind GLINT fine jewelry.',
+};
 
 export default function AboutPage() {
   return (
-    <PageTransition>
-      <div className="bg-warm-white min-h-screen">
-        <div className="relative h-[60vh] w-full overflow-hidden">
-          <div className="absolute inset-0 bg-dark-charcoal/20 z-10" />
-          <div className="absolute inset-0 bg-warm-ivory flex items-center justify-center">
-            {/* Placeholder for hero image */}
-            <span className="text-secondary-text font-serif italic text-lg z-0">About Us Hero Image</span>
-          </div>
-          <div className="absolute inset-0 z-20 flex items-center justify-center">
-            <h1 className="text-5xl md:text-7xl font-serif text-white uppercase tracking-widest text-center px-4 drop-shadow-md">
-              Our Heritage
-            </h1>
+    <div className="flex flex-col w-full min-h-screen bg-[#F5F2EA]">
+      <Navigation theme="core" />
+      
+      {/* Hero Section */}
+      <div className="w-full flex flex-col items-center text-center px-6 py-32 border-b border-glint-charcoal/10 mt-16">
+        <Heading as="h1" className="text-4xl md:text-5xl lg:text-6xl text-glint-charcoal mb-6">
+          Small Sparks. Everyday.
+        </Heading>
+        <Text className="max-w-2xl text-glint-charcoal/80 text-lg">
+          GLINT was founded on a simple premise: fine jewelry shouldn&apos;t be reserved for special occasions. It should be lived in, loved, and worn every single day.
+        </Text>
+      </div>
+
+      {/* Content Section */}
+      <div className="w-full max-w-[1200px] mx-auto px-6 py-24 flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+        <div className="w-full lg:w-1/2">
+          <div className="relative aspect-[3/4] w-full bg-black/5">
+            {/* Using a placeholder gradient for the editorial image */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-glint-charcoal/20 to-glint-ivory/50" />
           </div>
         </div>
-
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-          <h2 className="text-3xl font-serif text-dark-charcoal uppercase tracking-widest mb-8">
-            The Story of Rangbareilly
-          </h2>
-          <div className="space-y-6 text-lg text-dark-charcoal leading-relaxed font-light">
-            <p>
-              Born from a passion for timeless elegance and impeccable craftsmanship, Rangbareilly represents the pinnacle of luxury jewellery. Every piece tells a story of heritage, art, and the meticulous attention to detail that defines our brand.
-            </p>
-            <p>
-              Our artisans blend traditional techniques with modern aesthetics to create adornments that are not merely worn, but cherished across generations.
-            </p>
-          </div>
-        </div>
-
-        <div className="bg-warm-ivory py-24">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-              <div className="aspect-[4/5] bg-white border border-border relative">
-                 <div className="absolute inset-0 flex items-center justify-center text-secondary-text font-serif italic">
-                    Craftsmanship Image
-                 </div>
-              </div>
-              <div>
-                <h3 className="text-2xl font-serif text-dark-charcoal uppercase tracking-widest mb-6">
-                  Uncompromising Quality
-                </h3>
-                <p className="text-dark-charcoal leading-relaxed font-light mb-8">
-                  We source only the finest materials—ethically mined diamonds, purest gold, and rarest gemstones. Our commitment to excellence ensures that every creation that leaves our atelier is nothing short of perfection.
-                </p>
-                <a href="/collections/all" className="inline-block border-b-2 border-brand-red text-dark-charcoal font-medium pb-1 hover:text-brand-red transition-colors uppercase tracking-wider text-sm">
-                  Explore Collections
-                </a>
-              </div>
-            </div>
-          </div>
+        
+        <div className="w-full lg:w-1/2 flex flex-col">
+          <Text className="text-xs uppercase tracking-widest text-glint-charcoal/60 mb-4">
+            Our Philosophy
+          </Text>
+          <Heading as="h2" className="text-3xl text-glint-charcoal mb-6">
+            Designed for the Quiet Moments
+          </Heading>
+          <Text className="text-glint-charcoal/80 leading-relaxed mb-6">
+            We believe that true luxury whispers. It doesn&apos;t shout. Our pieces are characterized by clean lines, negative space, and an uncompromising dedication to structural integrity.
+          </Text>
+          <Text className="text-glint-charcoal/80 leading-relaxed">
+            Every piece of GLINT jewelry is handcrafted using responsibly sourced 14k solid gold and conflict-free diamonds. We design with longevity in mind, ensuring your pieces will outlast fleeting trends and become part of your daily uniform.
+          </Text>
         </div>
       </div>
-    </PageTransition>
+      
+      <Footer theme="core" />
+    </div>
   );
 }
