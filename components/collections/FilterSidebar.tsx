@@ -23,10 +23,10 @@ export function FilterSidebar({ theme = "core" }: { theme?: "core" | "loud" }) {
       
       <div className="hidden lg:block space-y-2 mb-8">
         <Text className={cn("uppercase tracking-widest text-sm mb-4", mutedTextClass)}>Sort By</Text>
-        <button className={cn("block w-full text-left transition-colors py-1", textClass, accentHoverClass)}>Featured</button>
-        <button className={cn("block w-full text-left transition-colors py-1", mutedTextClass, accentHoverClass)}>Price: Low to High</button>
-        <button className={cn("block w-full text-left transition-colors py-1", mutedTextClass, accentHoverClass)}>Price: High to Low</button>
-        <button className={cn("block w-full text-left transition-colors py-1", mutedTextClass, accentHoverClass)}>Newest</button>
+        <button type="button" className={cn("block w-full text-left transition-colors py-1", textClass, accentHoverClass)}>Featured</button>
+        <button type="button" className={cn("block w-full text-left transition-colors py-1", mutedTextClass, accentHoverClass)}>Price: Low to High</button>
+        <button type="button" className={cn("block w-full text-left transition-colors py-1", mutedTextClass, accentHoverClass)}>Price: High to Low</button>
+        <button type="button" className={cn("block w-full text-left transition-colors py-1", mutedTextClass, accentHoverClass)}>Newest</button>
       </div>
 
       <div className="hidden lg:block space-y-4">

@@ -29,6 +29,7 @@ export function Materials({ theme = "core" }: { theme?: "core" | "loud" }) {
               : "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1000&auto=format&fit=crop"}
             alt="Jewelry Craftsmanship"
             fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
           />
         </m.div>

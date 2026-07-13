@@ -66,6 +66,7 @@ export function CartDrawer() {
                 Your Cart
               </Heading>
               <button
+                type="button"
                 onClick={closeDrawer}
                 className="text-glint-charcoal hover:text-glint-gold transition-colors p-2 -mr-2"
                 aria-label="Close cart"

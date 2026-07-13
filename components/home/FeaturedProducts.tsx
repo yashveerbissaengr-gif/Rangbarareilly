@@ -52,6 +52,7 @@ export function FeaturedProducts({ products, theme = "core" }: FeaturedProductsP
                       src={primaryImage.url}
                       alt={primaryImage.alt || product.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                       className="object-contain p-12 transition-transform duration-1000 group-hover:scale-105"
                     />
                   )}

@@ -81,6 +81,7 @@ export function Testimonials({ theme = "core" }: { theme?: "core" | "loud" }) {
 
       <div className="flex space-x-6 mt-12">
         <button 
+          type="button"
           onClick={handlePrev}
           className={cn("p-3 transition-colors rounded-full", mutedTextClass, buttonHoverClass)}
           aria-label="Previous testimonial"
@@ -88,6 +89,7 @@ export function Testimonials({ theme = "core" }: { theme?: "core" | "loud" }) {
           <ChevronLeft strokeWidth={1} size={32} />
         </button>
         <button 
+          type="button"
           onClick={handleNext}
           className={cn("p-3 transition-colors rounded-full", mutedTextClass, buttonHoverClass)}
           aria-label="Next testimonial"

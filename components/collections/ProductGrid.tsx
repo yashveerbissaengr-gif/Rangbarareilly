@@ -53,6 +53,7 @@ export function ProductGrid({ products, theme = "core" }: ProductGridProps) {
                     src={primaryImage.url}
                     alt={primaryImage.alt || product.title}
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-contain p-12 transition-transform duration-1000 group-hover:scale-105"
                   />
                 )}

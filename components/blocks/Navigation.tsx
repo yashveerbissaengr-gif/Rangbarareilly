@@ -40,6 +40,8 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
         {/* Left: Mobile Menu & Navigation Links */}
         <div className="flex items-center space-x-8 w-1/3">
           <button 
+            type="button"
+            aria-label="Toggle mobile menu"
             className={cn("md:hidden", textClass)}
             onClick={() => alert("Mobile menu coming soon")}
           >
@@ -72,18 +74,24 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
         {/* Right: Actions */}
         <div className="flex items-center justify-end space-x-6 w-1/3">
           <button 
+            type="button"
+            aria-label="Search"
             className={cn("hidden md:flex items-center space-x-2 text-sm transition-colors", textClass, hoverClass)}
             onClick={() => alert("Search coming soon")}
           >
             <Search size={18} />
           </button>
           <button 
+            type="button"
+            aria-label="Wishlist"
             className={cn("hidden md:block transition-colors", textClass, hoverClass)}
             onClick={() => alert("Wishlist coming soon")}
           >
             <Heart size={20} />
           </button>
           <button 
+            type="button"
+            aria-label="Shopping bag"
             className={cn("flex items-center transition-colors relative", textClass, hoverClass)}
             onClick={openDrawer}
           >

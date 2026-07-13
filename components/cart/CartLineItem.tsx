@@ -25,6 +25,7 @@ export function CartLineItem({ item }: CartLineItemProps) {
             src={primaryImage.url}
             alt={primaryImage.alt || item.product.title}
             fill
+            sizes="96px"
             className="object-cover"
           />
         )}
@@ -44,6 +45,7 @@ export function CartLineItem({ item }: CartLineItemProps) {
             )}
           </div>
           <button 
+            type="button"
             onClick={() => removeItem(item.id)}
             className="text-glint-charcoal/40 hover:text-glint-charcoal transition-colors p-1"
             aria-label="Remove item"
@@ -55,6 +57,7 @@ export function CartLineItem({ item }: CartLineItemProps) {
         <div className="flex justify-between items-end mt-4">
           <div className="flex items-center border border-glint-charcoal/20">
             <button
+              type="button"
               onClick={() => updateQuantity(item.id, item.quantity - 1)}
               className="px-3 py-1 text-glint-charcoal/60 hover:text-glint-charcoal transition-colors"
               aria-label="Decrease quantity"
@@ -65,6 +68,7 @@ export function CartLineItem({ item }: CartLineItemProps) {
               {item.quantity}
             </span>
             <button
+              type="button"
               onClick={() => updateQuantity(item.id, item.quantity + 1)}
               className="px-3 py-1 text-glint-charcoal/60 hover:text-glint-charcoal transition-colors"
               aria-label="Increase quantity"
