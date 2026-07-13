@@ -1,5 +1,4 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { updateSession } from '@/lib/supabase/middleware'
 import { rateLimit } from '@/lib/utils/rateLimit'
 
 // Configurable thresholds, defaulting if env vars aren't set yet
@@ -31,8 +30,8 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Continue to standard supabase session update
-  return await updateSession(request)
+  // Continue to standard next response
+  return NextResponse.next();
 }
 
 export const config = {
