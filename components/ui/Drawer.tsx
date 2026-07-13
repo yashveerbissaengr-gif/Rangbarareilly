@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { cn } from "../../lib/utils";
 
@@ -34,7 +34,7 @@ export function Drawer({ isOpen, onClose, title, children, side = "right" }: Dra
     <AnimatePresence>
       {isOpen && (
         <>
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -42,7 +42,7 @@ export function Drawer({ isOpen, onClose, title, children, side = "right" }: Dra
             className="fixed inset-0 z-50 bg-glint-charcoal/30 backdrop-blur-sm"
             onClick={onClose}
           />
-          <motion.div
+          <m.div
             initial="hidden"
             animate="visible"
             exit="hidden"
@@ -66,7 +66,7 @@ export function Drawer({ isOpen, onClose, title, children, side = "right" }: Dra
             <div className="flex-1 p-8">
               {children}
             </div>
-          </motion.div>
+          </m.div>
         </>
       )}
     </AnimatePresence>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Heading, Text } from "../ui/Typography";
 import { Button } from "../ui/Button";
 
@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section className="w-full h-screen flex flex-col md:flex-row">
       {/* Left Side: CORE (Cream) */}
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -32,10 +32,10 @@ export function Hero() {
             Explore Core
           </Button>
         </Link>
-      </motion.div>
+      </m.div>
 
       {/* Right Side: LOUD (Dark) */}
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -57,7 +57,7 @@ export function Hero() {
             Explore Loud
           </Button>
         </Link>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

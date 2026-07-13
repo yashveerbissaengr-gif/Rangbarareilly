@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Heading, Text } from "../ui/Typography";
 
 import { cn } from "@/lib/utils";
@@ -16,7 +16,7 @@ export function Materials({ theme = "core" }: { theme?: "core" | "loud" }) {
   return (
     <section className={cn("py-24 px-6 md:px-12 lg:px-24", bgClass)}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -31,9 +31,9 @@ export function Materials({ theme = "core" }: { theme?: "core" | "loud" }) {
             fill
             className="object-cover"
           />
-        </motion.div>
+        </m.div>
         
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -53,7 +53,7 @@ export function Materials({ theme = "core" }: { theme?: "core" | "loud" }) {
               Every curve, every clasp, and every polish is meticulously scrutinized to ensure that what you wear feels as natural as it looks. 
             </Text>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

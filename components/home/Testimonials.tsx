@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Heading, Text } from "../ui/Typography";
 
@@ -61,7 +61,7 @@ export function Testimonials({ theme = "core" }: { theme?: "core" | "loud" }) {
 
       <div className="relative w-full max-w-3xl min-h-[250px] flex items-center justify-center">
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={currentIndex}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export function Testimonials({ theme = "core" }: { theme?: "core" | "loud" }) {
             <Text className={cn("tracking-widest uppercase text-sm", accentTextClass)}>
               — {testimonials[currentIndex].author}
             </Text>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
 

@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Heading, Text } from "../ui/Typography";
 import { Product } from "@/types";
 
@@ -37,7 +37,7 @@ export function FeaturedProducts({ products, theme = "core" }: FeaturedProductsP
           const primaryImage = product.images.find(img => img.isPrimary) || product.images[0];
           
           return (
-            <motion.div
+            <m.div
               key={product.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -61,7 +61,7 @@ export function FeaturedProducts({ products, theme = "core" }: FeaturedProductsP
                   <Text className={cn("mt-1", mutedTextClass)}>₹{product.price}</Text>
                 </div>
               </Link>
-            </motion.div>
+            </m.div>
           );
         })}
       </div>

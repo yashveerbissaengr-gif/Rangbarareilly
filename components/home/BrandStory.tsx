@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Heading } from "../ui/Typography";
 
 import { cn } from "@/lib/utils";
@@ -14,7 +14,7 @@ export function BrandStory({ theme = "core" }: { theme?: "core" | "loud" }) {
 
   return (
     <section className={cn("flex items-center justify-center min-h-[70vh] px-6 py-32", bgClass)}>
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
@@ -34,7 +34,7 @@ export function BrandStory({ theme = "core" }: { theme?: "core" | "loud" }) {
             </>
           )}
         </Heading>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

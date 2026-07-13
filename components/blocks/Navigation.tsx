@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { m, useScroll, useMotionValueEvent } from "framer-motion";
 import { Search, ShoppingBag, Heart, Menu } from "lucide-react";
 import { useCart } from "@/lib/context/CartContext";
 import { cn } from "@/lib/utils";
@@ -25,7 +25,7 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
   const logoHref = "/";
 
   return (
-    <motion.header
+    <m.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -99,6 +99,6 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
           </button>
         </div>
       </div>
-    </motion.header>
+    </m.header>
   );
 }

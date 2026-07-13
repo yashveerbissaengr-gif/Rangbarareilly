@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Plus, Minus } from "lucide-react";
 import { cn } from "../../lib/utils";
 
@@ -36,7 +36,7 @@ export function AccordionItem({ title, children, defaultOpen = false, theme = "c
       </button>
       <AnimatePresence initial={false}>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -46,7 +46,7 @@ export function AccordionItem({ title, children, defaultOpen = false, theme = "c
             <div className={cn("pb-6 font-sans font-light leading-relaxed", mutedTextClass)}>
               {children}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

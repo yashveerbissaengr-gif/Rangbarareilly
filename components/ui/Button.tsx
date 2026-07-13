@@ -1,7 +1,7 @@
 "use client";
 
 import React, { forwardRef } from "react";
-import { motion, HTMLMotionProps } from "framer-motion";
+import { m, HTMLMotionProps } from "framer-motion";
 import { cn } from "../../lib/utils";
 
 export interface ButtonProps extends Omit<HTMLMotionProps<"button">, "ref"> {
@@ -35,14 +35,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     return (
-      <motion.button
+      <m.button
         ref={ref}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className={cn(baseStyles, variants[variant], sizes[size], className)}
         {...props}
       >
         {children}
-      </motion.button>
+      </m.button>
     );
   }
 );

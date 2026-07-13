@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Text } from "../ui/Typography";
 import { Product } from "@/types";
 
@@ -38,7 +38,7 @@ export function ProductGrid({ products, theme = "core" }: ProductGridProps) {
         const cardBgClass = isProductLoud ? "bg-[#2B2622]" : "bg-[#F5F2EA]";
         
         return (
-          <motion.div
+          <m.div
             key={product.id}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ export function ProductGrid({ products, theme = "core" }: ProductGridProps) {
                 <Text className={cn("mt-1", mutedTextClass)}>₹{product.price}</Text>
               </div>
             </Link>
-          </motion.div>
+          </m.div>
         );
       })}
     </div>
