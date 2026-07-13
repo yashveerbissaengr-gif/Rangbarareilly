@@ -24,6 +24,7 @@ export function AccordionItem({ title, children, defaultOpen = false, theme = "c
   return (
     <div className={cn("border-b", borderClass)}>
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between w-full py-6 text-left focus:outline-none group"
       >

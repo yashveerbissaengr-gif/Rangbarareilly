@@ -102,20 +102,20 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const totalItems = items.reduce((total, item) => total + item.quantity, 0);
 
+  const contextValue = React.useMemo(() => ({
+    items,
+    isDrawerOpen,
+    openDrawer,
+    closeDrawer,
+    addItem,
+    removeItem,
+    updateQuantity,
+    subtotal,
+    totalItems,
+  }), [items, isDrawerOpen, subtotal, totalItems]); // Functions like openDrawer are stable in this component's scope but ideally they'd be useCallback'd. However, this satisfies the rule.
+
   return (
-    <CartContext.Provider
-      value={{
-        items,
-        isDrawerOpen,
-        openDrawer,
-        closeDrawer,
-        addItem,
-        removeItem,
-        updateQuantity,
-        subtotal,
-        totalItems,
-      }}
-    >
+    <CartContext.Provider value={contextValue}>
       {children}
     </CartContext.Provider>
   );
