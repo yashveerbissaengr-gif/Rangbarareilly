@@ -37,14 +37,16 @@ export function AccordionItem({ title, children, defaultOpen = false, theme = "c
       <AnimatePresence initial={false}>
         {isOpen && (
           <m.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ gridTemplateRows: "0fr", opacity: 0 }}
+            animate={{ gridTemplateRows: "1fr", opacity: 1 }}
+            exit={{ gridTemplateRows: "0fr", opacity: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
+            className="grid"
           >
-            <div className={cn("pb-6 font-sans font-light leading-relaxed", mutedTextClass)}>
-              {children}
+            <div className="overflow-hidden">
+              <div className={cn("pb-6 font-sans font-light leading-relaxed", mutedTextClass)}>
+                {children}
+              </div>
             </div>
           </m.div>
         )}

@@ -30,7 +30,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const isMounted = React.useRef(false);
 
   useEffect(() => {
-    const savedCart = localStorage.getItem('glint_cart');
+    const savedCart = localStorage.getItem('glint_cart:v1');
     if (savedCart) {
       try {
         // eslint-disable-next-line
@@ -40,14 +40,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
     }
     // Set mounted flag after initial load
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       isMounted.current = true;
     }, 0);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     if (isMounted.current) {
-      localStorage.setItem('glint_cart', JSON.stringify(items));
+      localStorage.setItem('glint_cart:v1', JSON.stringify(items));
     }
   }, [items]);
 
