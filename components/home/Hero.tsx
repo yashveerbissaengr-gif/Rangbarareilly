@@ -18,7 +18,7 @@ export function Hero() {
         className="relative flex-1 h-full bg-[#EAE2D3] text-[#2B2622] flex flex-col items-center justify-center overflow-hidden group"
       >
         <Image
-          src="/images/core-hero-bg.jpg"
+          src="/images/core-hero-bg-v4.jpg"
           alt="Core Collection - Minimalist gold chain and ring"
           fill
           priority
@@ -52,7 +52,7 @@ export function Hero() {
         className="relative flex-1 h-full bg-[#2B2622] text-[#EAE2D3] flex flex-col items-center justify-center overflow-hidden group"
       >
         <Image
-          src="/images/loud-hero-bg.jpg"
+          src="/images/loud-hero-bg-v4.jpg"
           alt="Loud Collection - Statement watch and coral drop hoop"
           fill
           priority
