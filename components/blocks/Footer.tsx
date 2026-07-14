@@ -22,7 +22,6 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
   const textClass = "text-glint-ivory";
   const mutedTextClass = "text-glint-ivory/60";
   const hoverClass = isLoud ? "hover:text-[#C9A227]" : "hover:text-glint-gold";
-  const logoText = isLoud ? "GLINT LOUD" : "GLINT CORE";
   const basePath = isLoud ? "/loud" : "/core";
 
   return (
@@ -32,13 +31,13 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
         {/* Brand & Newsletter */}
         <div className="lg:col-span-2 flex flex-col justify-between">
           <div>
-            <span className="font-serif text-3xl md:text-4xl block mb-6 tracking-[0.2em] uppercase">
-              {logoText}
+            <span className="font-serif font-bold text-4xl md:text-5xl block mb-6 tracking-tight">
+              glint
             </span>
             <Text className="text-glint-ivory/80 max-w-sm mb-12">
               {isLoud 
                 ? "Statement pieces designed to turn heads and start conversations."
-                : "Small sparks. Everyday. Fine jewelry designed to be lived in, loved, and passed down."}
+                : "small sparks. everyday. Fine jewelry designed to be lived in, loved, and passed down."}
             </Text>
           </div>
           
@@ -128,7 +127,7 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
       {/* Bottom Bar */}
       <div className="max-w-[1600px] mx-auto border-t border-glint-ivory/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <Text className="text-xs text-glint-ivory/40">
-          © {new Date().getFullYear()} {logoText}. All rights reserved.
+          © {new Date().getFullYear()} glint. All rights reserved.
         </Text>
         
         <div className={cn("flex items-center space-x-6", mutedTextClass)}>

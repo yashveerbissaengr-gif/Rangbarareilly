@@ -21,8 +21,6 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
   const borderClass = isLoud ? "border-[#C9A227]/20" : "border-glint-charcoal/10";
   const textClass = isLoud ? "text-glint-ivory" : "text-glint-charcoal";
   const hoverClass = isLoud ? "hover:text-[#C9A227]" : "hover:text-glint-gold";
-  const logoText = "GLINT";
-  const logoHref = "/";
 
   return (
     <m.header
@@ -64,9 +62,9 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
 
         {/* Center: Logo */}
         <div className="w-1/3 text-center">
-          <Link href={logoHref}>
-            <span className={cn("font-serif text-2xl md:text-3xl tracking-[0.2em] uppercase", textClass)}>
-              {logoText}
+          <Link href="/">
+            <span className={cn("font-serif font-bold text-3xl md:text-4xl tracking-tight", textClass)}>
+              glint
             </span>
           </Link>
         </div>
