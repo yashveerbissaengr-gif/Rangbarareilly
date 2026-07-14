@@ -51,9 +51,6 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
             <Link href="/collections/all" className={cn("text-xs uppercase tracking-widest font-sans transition-colors", textClass, hoverClass)}>
               Shop
             </Link>
-            <Link href="/collections" className={cn("text-xs uppercase tracking-widest font-sans transition-colors", textClass, hoverClass)}>
-              Collections
-            </Link>
             <Link href="/about" className={cn("text-xs uppercase tracking-widest font-sans transition-colors", textClass, hoverClass)}>
               About
             </Link>
