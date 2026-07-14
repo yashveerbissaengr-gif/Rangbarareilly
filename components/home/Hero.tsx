@@ -19,14 +19,14 @@ export function Hero() {
         className="relative flex-1 h-full bg-[#EAE2D3] text-[#2B2622] flex flex-col items-center justify-center overflow-hidden group"
       >
         <Image
-          src="/images/core-hero-bg-v5.png"
+          src="/images/core-hero-bg-v6.png"
           alt="Core Collection - Minimalist gold chain and ring"
           fill
           priority
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover transition-transform duration-1000 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-[#EAE2D3]/10 z-0"></div>
+        
         <Link href="#core-section" className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center p-8">
           <Heading as="h1" className="text-6xl md:text-8xl font-serif font-bold tracking-tight mb-4 text-[#2B2622]">
             glint
@@ -69,14 +69,14 @@ export function Hero() {
         className="relative flex-1 h-full bg-[#2B2622] text-[#EAE2D3] flex flex-col items-center justify-center overflow-hidden group"
       >
         <Image
-          src="/images/loud-hero-bg-v5.png"
+          src="/images/loud-hero-bg-v6.png"
           alt="Loud Collection - Statement watch and coral drop hoop"
           fill
           priority
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover transition-transform duration-1000 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-[#1A1614]/30 z-0"></div>
+        
         <Link href="#loud-section" className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center p-8">
           <Heading as="h1" className="text-6xl md:text-8xl font-serif font-bold tracking-tight mb-4 text-[#EAE2D3]">
             glint
