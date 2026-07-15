@@ -44,25 +44,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
           <FilterSidebar theme={theme} />
           
           <div className="flex-1 flex flex-col gap-16">
-            {slug === "all" ? (
-              <>
-                <div className="flex flex-col gap-6">
-                  <h2 className="text-2xl font-serif text-[#C18066] flex items-center gap-2">
-                    <span className="text-xl">+</span> Glint Core
-                  </h2>
-                  <ProductGrid products={products.filter(p => p.tags.includes("core"))} theme="core" />
-                </div>
-                
-                <div className="flex flex-col gap-6">
-                  <h2 className="text-2xl font-serif text-[#9B63C6] flex items-center gap-2">
-                    <span className="text-xl">+</span> Glint Loud
-                  </h2>
-                  <ProductGrid products={products.filter(p => p.tags.includes("loud"))} theme="loud" />
-                </div>
-              </>
-            ) : (
-              <ProductGrid products={products} theme={theme} />
-            )}
+            <ProductGrid products={products} theme={theme} />
           </div>
         </div>
       </div>

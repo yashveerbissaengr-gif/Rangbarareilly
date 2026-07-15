@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Text } from "../ui/Typography";
 import { AccordionItem } from "../ui/Accordion";
 
@@ -32,11 +33,14 @@ export function FilterSidebar({ theme = "core" }: { theme?: "core" | "loud" }) {
       <div className="hidden lg:block space-y-4">
         <AccordionItem title="Category" defaultOpen theme={theme}>
           <div className="space-y-3 pt-2">
-            {["All", "Earrings", "Rings", "Necklaces", "Bracelets"].map((category) => (
-              <label key={category} className="flex items-center space-x-3 cursor-pointer group">
-                <input type="checkbox" className={cn("form-checkbox bg-transparent rounded-none h-4 w-4 transition duration-200 focus:ring-offset-0", checkboxBorderClass, ringClass)} />
-                <span className={cn("transition-colors", isLoud ? "text-glint-ivory/80 group-hover:text-glint-ivory" : "text-glint-charcoal/80 group-hover:text-glint-charcoal")}>{category}</span>
-              </label>
+            {["All", "Watches", "Studs", "Earrings", "Rings", "Necklaces", "Bracelets"].map((category) => (
+              <Link 
+                key={category} 
+                href={`/collections/${category.toLowerCase()}`}
+                className={cn("block transition-colors py-1", isLoud ? "text-glint-ivory/80 hover:text-glint-ivory" : "text-glint-charcoal/80 hover:text-glint-charcoal")}
+              >
+                {category}
+              </Link>
             ))}
           </div>
         </AccordionItem>
