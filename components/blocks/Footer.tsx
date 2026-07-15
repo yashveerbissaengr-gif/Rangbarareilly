@@ -35,7 +35,7 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
           <div className="lg:col-span-5 flex flex-col space-y-12 pr-0 lg:pr-12 lg:border-r border-glint-ivory/10">
             <div>
               <span className="font-serif font-bold text-4xl md:text-5xl block mb-6 tracking-tight">
-                glint
+                gl<span className="text-[0.55em] inline-block align-middle transform -translate-y-[15%] mx-[1px]">✧</span>nt
               </span>
               <Text className="text-glint-ivory/80 max-w-sm mb-6">
                 Join Our Community

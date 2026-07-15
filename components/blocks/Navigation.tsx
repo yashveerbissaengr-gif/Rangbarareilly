@@ -61,7 +61,7 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
         <div className="w-1/3 text-center flex justify-center items-center">
           <Link href="/">
             <span className={cn("font-serif font-bold text-4xl md:text-5xl tracking-tight leading-none block", textClass)}>
-              glint
+              gl<span className="text-[0.55em] inline-block align-middle transform -translate-y-[15%] mx-[1px]">✧</span>nt
             </span>
           </Link>
         </div>
