@@ -32,7 +32,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
     <div className={cn("flex flex-col w-full min-h-screen", bgClass)}>
       <Navigation theme={theme} />
       
-      <div className="pt-24">
+      <div className="pt-[73px]">
         <CollectionHeader 
           title={slug === "all" ? "Shop All" : slug} 
           description={slug === "all" ? "Explore our entire collection of fine jewelry and statement pieces." : `Explore our curated selection of fine ${slug.replace("-", " ")} designed for the quiet moments.`}

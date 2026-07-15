@@ -31,10 +31,10 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
         "fixed top-0 w-full z-50 transition-all duration-300 border-b",
         bgClass,
         borderClass,
-        isScrolled ? "py-4 shadow-sm" : "py-6"
+        isScrolled ? "py-2 shadow-sm" : "py-3"
       )}
     >
-      <div className="container px-6 mx-auto flex items-center justify-between">
+      <div className="w-full px-6 lg:px-12 mx-auto flex items-center justify-between">
         {/* Left: Mobile Menu & Navigation Links */}
         <div className="flex items-center space-x-8 w-1/3">
           <button 
@@ -58,9 +58,9 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
         </div>
 
         {/* Center: Logo */}
-        <div className="w-1/3 text-center">
+        <div className="w-1/3 text-center flex justify-center items-center">
           <Link href="/">
-            <span className={cn("font-serif font-bold text-3xl md:text-4xl tracking-tight", textClass)}>
+            <span className={cn("font-serif font-bold text-4xl md:text-5xl tracking-tight leading-none block", textClass)}>
               glint
             </span>
           </Link>

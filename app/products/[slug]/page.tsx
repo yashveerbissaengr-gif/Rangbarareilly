@@ -44,7 +44,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <Navigation theme={theme} />
       
       {/* Product Details Section - Sticky split layout */}
-      <div className="flex flex-col lg:flex-row w-full max-w-[1600px] mx-auto pt-24">
+      <div className="flex flex-col lg:flex-row w-full max-w-[1600px] mx-auto pt-[73px]">
         <ImageGallery images={product.images} />
         <ProductInfo product={product} theme={theme} />
       </div>
