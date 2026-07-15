@@ -5,6 +5,7 @@ import { AnnouncementBar } from "@/components/home/AnnouncementBar";
 import { BrandStory } from "@/components/home/BrandStory";
 import { FeaturedCategories } from "@/components/home/FeaturedCategories";
 import { Materials } from "@/components/home/Materials";
+import { LovedByCustomers } from "@/components/home/LovedByCustomers";
 import { Testimonials } from "@/components/home/Testimonials";
 import { getProducts } from "@/lib/shopify";
 
@@ -31,6 +32,7 @@ export default async function RootPage() {
         <BrandStory theme="core" />
         <FeaturedCategories products={coreProducts} theme="core" />
         <Materials theme="core" />
+        <LovedByCustomers theme="core" />
         <Testimonials theme="core" />
       </section>
 
@@ -40,6 +42,7 @@ export default async function RootPage() {
         <BrandStory theme="loud" />
         <FeaturedCategories products={loudProducts} theme="loud" />
         <Materials theme="loud" />
+        <LovedByCustomers theme="loud" />
         <Testimonials theme="loud" />
       </section>
 
