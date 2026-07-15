@@ -38,30 +38,24 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
                 glint
               </span>
               <Text className="text-glint-ivory/80 max-w-sm mb-6">
-                Sign Up And Save
+                Join Our Community
                 <br/>
-                <span className="text-sm opacity-70 mt-2 block">Subscribe to get special offers, free giveaways and once-in-a-lifetime deals.</span>
+                <span className="text-sm opacity-70 mt-2 block">Get access to special offers, free giveaways, and exclusive updates directly on WhatsApp.</span>
               </Text>
               
-              <form onSubmit={handleSubscribe} className="relative w-full max-w-sm">
-                <div className="relative border-b border-glint-ivory/30 pb-2 flex items-center">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full bg-transparent border-none text-glint-ivory placeholder:text-glint-ivory/40 focus:ring-0 focus:outline-none p-0 text-sm"
-                  />
-                  <button 
-                    type="submit" 
-                    className={cn("transition-colors ml-2", textClass, hoverClass)}
-                    aria-label="Subscribe"
-                  >
-                    <ArrowRight size={18} />
-                  </button>
-                </div>
-              </form>
+              <div className="w-full max-w-sm">
+                <a 
+                  href="https://wa.me/919220427575" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 font-medium text-sm tracking-widest uppercase transition-all duration-300",
+                    isLoud ? "bg-[#C9A227] text-glint-charcoal hover:bg-glint-ivory" : "bg-glint-gold text-glint-charcoal hover:bg-glint-ivory"
+                  )}
+                >
+                  Join WhatsApp Community
+                </a>
+              </div>
             </div>
 
             {/* Social Icons */}
