@@ -3,7 +3,7 @@ import { Navigation } from "@/components/blocks/Navigation";
 import { Footer } from "@/components/blocks/Footer";
 import { AnnouncementBar } from "@/components/home/AnnouncementBar";
 import { BrandStory } from "@/components/home/BrandStory";
-import { FeaturedProducts } from "@/components/home/FeaturedProducts";
+import { FeaturedCategories } from "@/components/home/FeaturedCategories";
 import { Materials } from "@/components/home/Materials";
 import { Testimonials } from "@/components/home/Testimonials";
 import { getProducts } from "@/lib/shopify";
@@ -29,7 +29,7 @@ export default async function RootPage() {
       <section id="core-section" className="w-full bg-[#EAE2D3] text-[#2B2622]">
         <AnnouncementBar theme="core" />
         <BrandStory theme="core" />
-        <FeaturedProducts products={coreProducts} theme="core" />
+        <FeaturedCategories products={coreProducts} theme="core" />
         <Materials theme="core" />
         <Testimonials theme="core" />
       </section>
@@ -38,7 +38,7 @@ export default async function RootPage() {
       <section id="loud-section" className="w-full bg-[#2B2622] text-[#EAE2D3]">
         <AnnouncementBar theme="loud" />
         <BrandStory theme="loud" />
-        <FeaturedProducts products={loudProducts} theme="loud" />
+        <FeaturedCategories products={loudProducts} theme="loud" />
         <Materials theme="loud" />
         <Testimonials theme="loud" />
       </section>
