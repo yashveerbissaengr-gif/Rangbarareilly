@@ -18,11 +18,12 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
   };
 
   const isLoud = theme === "loud";
-  const bgClass = isLoud ? "bg-[#1A1715]" : "bg-glint-charcoal";
-  const textClass = "text-glint-ivory";
-  const mutedTextClass = "text-glint-ivory/70";
-  const hoverClass = isLoud ? "hover:text-[#C9A227]" : "hover:text-glint-gold";
-  const borderClass = "border-glint-ivory/10";
+  const bgClass = isLoud ? "bg-[#1A1715]" : "bg-glint-ivory";
+  const textClass = isLoud ? "text-glint-ivory" : "text-glint-charcoal";
+  const mutedTextClass = isLoud ? "text-glint-ivory/70" : "text-glint-charcoal/70";
+  const hoverClass = isLoud ? "hover:text-[#C9A227]" : "hover:text-gray-900 font-medium";
+  const borderClass = isLoud ? "border-glint-ivory/10" : "border-glint-charcoal/10";
+  const accentTextClass = isLoud ? "text-glint-gold" : "text-[#8A7336]"; // Darker gold for light bg
   const basePath = "/shop";
 
   return (
@@ -32,12 +33,12 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
           
           {/* Left Column: Brand, Newsletter, Socials, Contact (Spans 5 cols) */}
-          <div className="lg:col-span-5 flex flex-col space-y-12 pr-0 lg:pr-12 lg:border-r border-glint-ivory/10">
+          <div className={cn("lg:col-span-5 flex flex-col space-y-12 pr-0 lg:pr-12 lg:border-r", borderClass)}>
             <div>
               <span className="font-serif font-bold text-4xl md:text-5xl block mb-6 tracking-tight">
                 gl<span className="text-[0.55em] inline-block align-middle transform -translate-y-[15%] mx-[1px]">✧</span>nt
               </span>
-              <Text className="text-glint-ivory/80 max-w-sm mb-6">
+              <Text className={cn("max-w-sm mb-6", mutedTextClass)}>
                 Join Our Community
                 <br/>
                 <span className="text-sm opacity-70 mt-2 block">Get access to special offers, free giveaways, and exclusive updates directly on WhatsApp.</span>
@@ -50,7 +51,7 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
                   rel="noopener noreferrer"
                   className={cn(
                     "inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 font-medium text-sm tracking-widest uppercase transition-all duration-300",
-                    isLoud ? "bg-[#C9A227] text-glint-charcoal hover:bg-glint-ivory" : "bg-glint-gold text-glint-charcoal hover:bg-glint-ivory"
+                    isLoud ? "bg-[#C9A227] text-glint-charcoal hover:bg-glint-ivory" : "bg-glint-charcoal text-glint-ivory hover:bg-[#8A7336]"
                   )}
                 >
                   Join WhatsApp Community
@@ -79,13 +80,13 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
 
             {/* Contact Us */}
             <div>
-              <Text className="text-xs uppercase tracking-widest mb-4 font-semibold text-glint-gold">
+              <Text className={cn("text-xs uppercase tracking-widest mb-4 font-semibold", accentTextClass)}>
                 CONTACT US
               </Text>
               <div className="space-y-3 text-sm opacity-80">
                 <p>Call Us at: +91 92204 27575</p>
                 <p>queries@glint.co.in</p>
-                <p><a href="#" className="underline underline-offset-4 hover:text-glint-gold transition-colors">Whatsapp Us</a></p>
+                <p><a href="#" className={cn("underline underline-offset-4 transition-colors", hoverClass)}>Whatsapp Us</a></p>
                 <p className="max-w-[250px] leading-relaxed">Pamposh Enclave, GK-1 Delhi - 110048</p>
               </div>
             </div>
@@ -132,9 +133,9 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
                 <li><Link href="/privacy" className={cn("transition-colors", mutedTextClass, hoverClass)}>Privacy Policy</Link></li>
                 <li><Link href="/terms" className={cn("transition-colors", mutedTextClass, hoverClass)}>Terms of Service</Link></li>
                 <li><Link href="/returns" className={cn("transition-colors", mutedTextClass, hoverClass)}>Return & Refund Policy</Link></li>
-                <li><Link href="/faq" className={cn("transition-colors", mutedTextClass, hoverClass)}>FAQ'S</Link></li>
+                <li><Link href="/faq" className={cn("transition-colors", mutedTextClass, hoverClass)}>FAQs</Link></li>
                 <li><Link href="/shipping" className={cn("transition-colors", mutedTextClass, hoverClass)}>Shipping Policy</Link></li>
-                <li><Link href="/track-order" className={cn("transition-colors font-medium text-glint-gold", hoverClass)}>Track Order</Link></li>
+                <li><Link href="/track-order" className={cn("transition-colors font-medium", hoverClass, accentTextClass)}>Track Order</Link></li>
                 <li><Link href="/careers" className={cn("transition-colors", mutedTextClass, hoverClass)}>Work with GLINT</Link></li>
               </ul>
             </div>
@@ -143,9 +144,9 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
         </div>
 
         {/* Accordions for Performance (Zero JS approach via HTML5 details) */}
-        <div className="border-t border-glint-ivory/10">
-          <details className="group border-b border-glint-ivory/10">
-            <summary className="flex justify-between items-center font-medium cursor-pointer list-none py-5 text-sm tracking-wide uppercase transition-colors hover:text-glint-gold">
+        <div className={cn("border-t", borderClass)}>
+          <details className={cn("group border-b", borderClass)}>
+            <summary className={cn("flex justify-between items-center font-medium cursor-pointer list-none py-5 text-sm tracking-wide uppercase transition-colors", hoverClass)}>
               <span>Jewellery By Colour</span>
               <span className="transition group-open:rotate-180">
                 <ChevronDown size={18} />
@@ -161,8 +162,8 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
             </div>
           </details>
 
-          <details className="group border-b border-glint-ivory/10">
-            <summary className="flex justify-between items-center font-medium cursor-pointer list-none py-5 text-sm tracking-wide uppercase transition-colors hover:text-glint-gold">
+          <details className={cn("group border-b", borderClass)}>
+            <summary className={cn("flex justify-between items-center font-medium cursor-pointer list-none py-5 text-sm tracking-wide uppercase transition-colors", hoverClass)}>
               <span>Shop By Occasion</span>
               <span className="transition group-open:rotate-180">
                 <ChevronDown size={18} />
@@ -181,7 +182,7 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
 
         {/* Bottom Bar */}
         <div className="pt-8 mt-4 flex flex-col md:flex-row items-center justify-between gap-4">
-          <Text className="text-xs text-glint-ivory/40">
+          <Text className={cn("text-xs", mutedTextClass)}>
             © {new Date().getFullYear()} glint. All rights reserved.
           </Text>
         </div>
