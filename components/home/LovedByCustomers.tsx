@@ -55,7 +55,10 @@ export function LovedByCustomers({ theme = "core" }: { theme?: "core" | "loud" }
                     <span className="text-[10px] text-gray-400 line-through">{item.originalPrice}</span>
                   </div>
                 </div>
-                <button className={cn(
+                <button 
+                  type="button"
+                  aria-label="Add to cart"
+                  className={cn(
                   "flex-none w-8 h-8 rounded-full flex items-center justify-center transition-colors",
                   isLoud ? "bg-[#C9A227] text-white hover:bg-[#A98217]" : "bg-glint-charcoal text-white hover:bg-glint-gold"
                 )}>
