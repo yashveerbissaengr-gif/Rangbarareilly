@@ -45,27 +45,64 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
           
           <div className="flex-1 flex flex-col gap-16">
             {slug === "all" ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {Array.from(new Set(products.map(p => p.collection))).map((collectionName, index) => {
-                  const firstProduct = products.find(p => p.collection === collectionName);
-                  const primaryImage = firstProduct?.images.find(img => img.isPrimary) || firstProduct?.images[0];
-                  return (
-                    <a key={collectionName} href={`/shop/${collectionName.toLowerCase()}`} className="group cursor-pointer block">
-                      <div className={cn("relative aspect-[4/5] mb-6 overflow-hidden rounded-xl", theme === "loud" ? "bg-[#2B2622]" : "bg-[#F5F2EA]")}>
-                        {primaryImage && (
-                          <img
-                            src={primaryImage.url}
-                            alt={collectionName}
-                            className="object-contain p-12 transition-transform duration-1000 group-hover:scale-105 w-full h-full absolute inset-0"
-                          />
-                        )}
-                      </div>
-                      <div className="flex flex-col text-center">
-                        <span className={cn("font-medium text-lg uppercase tracking-widest", theme === "loud" ? "text-glint-ivory" : "text-glint-charcoal")}>{collectionName}</span>
-                      </div>
-                    </a>
-                  );
-                })}
+              <div className="flex flex-col gap-16">
+                {/* Core Categories */}
+                <div className="flex flex-col gap-8">
+                  <h2 className="text-2xl font-serif text-glint-charcoal flex items-center gap-2">
+                    <span className="text-xl">+</span> Glint Core
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {Array.from(new Set(products.filter(p => p.tags.includes("core")).map(p => p.collection))).map(collectionName => {
+                      const firstProduct = products.find(p => p.collection === collectionName && p.tags.includes("core"));
+                      const primaryImage = firstProduct?.images.find(img => img.isPrimary) || firstProduct?.images[0];
+                      return (
+                        <a key={`core-${collectionName}`} href={`/shop/${collectionName.toLowerCase()}`} className="group cursor-pointer block">
+                          <div className="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-[#F5F2EA]">
+                            {primaryImage && (
+                              <img
+                                src={primaryImage.url}
+                                alt={collectionName}
+                                className="object-contain p-12 transition-transform duration-1000 group-hover:scale-105 w-full h-full absolute inset-0"
+                              />
+                            )}
+                          </div>
+                          <div className="flex flex-col text-center">
+                            <span className="font-medium text-lg uppercase tracking-widest text-glint-charcoal">{collectionName}</span>
+                          </div>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Loud Categories */}
+                <div className="flex flex-col gap-8">
+                  <h2 className="text-2xl font-serif text-[#C9A227] flex items-center gap-2">
+                    <span className="text-xl">+</span> Glint Loud
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {Array.from(new Set(products.filter(p => p.tags.includes("loud")).map(p => p.collection))).map(collectionName => {
+                      const firstProduct = products.find(p => p.collection === collectionName && p.tags.includes("loud"));
+                      const primaryImage = firstProduct?.images.find(img => img.isPrimary) || firstProduct?.images[0];
+                      return (
+                        <a key={`loud-${collectionName}`} href={`/shop/${collectionName.toLowerCase()}`} className="group cursor-pointer block">
+                          <div className="relative aspect-[4/5] mb-6 overflow-hidden rounded-xl bg-[#2B2622]">
+                            {primaryImage && (
+                              <img
+                                src={primaryImage.url}
+                                alt={collectionName}
+                                className="object-contain p-12 transition-transform duration-1000 group-hover:scale-105 w-full h-full absolute inset-0"
+                              />
+                            )}
+                          </div>
+                          <div className="flex flex-col text-center">
+                            <span className="font-medium text-lg uppercase tracking-widest text-glint-charcoal">{collectionName}</span>
+                          </div>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             ) : (
               <ProductGrid products={products} theme={theme} />
