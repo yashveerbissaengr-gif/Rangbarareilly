@@ -27,7 +27,7 @@ export function FeaturedProducts({ products, theme = "core" }: FeaturedProductsP
         <Heading as="h2" className={cn("text-3xl md:text-4xl", textClass)}>
           {isLoud ? "Statement Pieces" : "The Essentials"}
         </Heading>
-        <Link href={`/collections/all`} className={cn("text-sm tracking-widest uppercase pb-1 border-b transition-colors", borderClass, textClass)}>
+        <Link href={`/shop/all`} className={cn("text-sm tracking-widest uppercase pb-1 border-b transition-colors", borderClass, textClass)}>
           Shop All
         </Link>
       </div>

@@ -48,7 +48,7 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
           
           {/* Desktop Links */}
           <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/collections/all" className={cn("text-xs uppercase tracking-widest font-sans transition-colors", textClass, hoverClass)}>
+            <Link href="/shop/all" className={cn("text-xs uppercase tracking-widest font-sans transition-colors", textClass, hoverClass)}>
               Shop
             </Link>
             <Link href="/about" className={cn("text-xs uppercase tracking-widest font-sans transition-colors", textClass, hoverClass)}>

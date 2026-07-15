@@ -72,22 +72,22 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
           </Text>
           <ul className="space-y-4">
             <li>
-              <Link href={`${basePath}/collections/all`} className={cn("transition-colors", mutedTextClass, hoverClass)}>
+              <Link href={`${basePath}/shop/all`} className={cn("transition-colors", mutedTextClass, hoverClass)}>
                 All Collections
               </Link>
             </li>
             <li>
-              <Link href={`${basePath}/collections/necklaces`} className={cn("transition-colors", mutedTextClass, hoverClass)}>
+              <Link href={`${basePath}/shop/necklaces`} className={cn("transition-colors", mutedTextClass, hoverClass)}>
                 Necklaces
               </Link>
             </li>
             <li>
-              <Link href={`${basePath}/collections/rings`} className={cn("transition-colors", mutedTextClass, hoverClass)}>
+              <Link href={`${basePath}/shop/rings`} className={cn("transition-colors", mutedTextClass, hoverClass)}>
                 Rings
               </Link>
             </li>
             <li>
-              <Link href={`${basePath}/collections/earrings`} className={cn("transition-colors", mutedTextClass, hoverClass)}>
+              <Link href={`${basePath}/shop/earrings`} className={cn("transition-colors", mutedTextClass, hoverClass)}>
                 Earrings
               </Link>
             </li>

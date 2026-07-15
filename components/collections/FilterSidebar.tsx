@@ -36,7 +36,7 @@ export function FilterSidebar({ theme = "core" }: { theme?: "core" | "loud" }) {
             {["All", "Watches", "Studs", "Earrings", "Rings", "Necklaces", "Bracelets"].map((category) => (
               <Link 
                 key={category} 
-                href={`/collections/${category.toLowerCase()}`}
+                href={`/shop/${category.toLowerCase()}`}
                 className={cn("block transition-colors py-1", isLoud ? "text-glint-ivory/80 hover:text-glint-ivory" : "text-glint-charcoal/80 hover:text-glint-charcoal")}
               >
                 {category}
