@@ -42,7 +42,12 @@ export default async function RootPage() {
         <BrandStory theme="loud" />
         <FeaturedCategories products={loudProducts} theme="loud" />
         <Materials theme="loud" />
-        <Testimonials theme="loud" />
+      </section>
+
+      {/* GLOBAL Section (Pure White) */}
+      <section id="global-section" className="w-full bg-[#ffffff] text-glint-charcoal">
+        <LovedByCustomers theme="core" />
+        <Testimonials theme="core" />
       </section>
 
       {/* Global Footer */}

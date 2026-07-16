@@ -18,16 +18,16 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
   };
 
   const isLoud = theme === "loud";
-  const bgClass = isLoud ? "bg-[#1A1715]" : "bg-glint-ivory";
+  const bgClass = isLoud ? "bg-[#1A1715]" : "bg-[#ffffff]";
   const textClass = isLoud ? "text-glint-ivory" : "text-glint-charcoal";
   const mutedTextClass = isLoud ? "text-glint-ivory/70" : "text-glint-charcoal/70";
-  const hoverClass = isLoud ? "hover:text-[#C9A227]" : "hover:text-gray-900 font-medium";
-  const borderClass = isLoud ? "border-glint-ivory/10" : "border-glint-charcoal/10";
+  const hoverClass = isLoud ? "hover:text-[#C9A227]" : "hover:text-[#C9A227] font-medium";
+  const borderClass = isLoud ? "border-glint-ivory/10" : "border-[#C9A227]/20";
   const accentTextClass = isLoud ? "text-glint-gold" : "text-[#8A7336]"; // Darker gold for light bg
   const basePath = "/shop";
 
   return (
-    <footer className={cn("w-full py-10 px-6 md:px-12 lg:px-24 font-sans", bgClass, textClass)}>
+    <footer className={cn("w-full py-10 px-6 md:px-12 lg:px-24 font-sans border-t", borderClass, bgClass, textClass)}>
       <div className="max-w-[1600px] mx-auto">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-10">
@@ -51,7 +51,7 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
                   rel="noopener noreferrer"
                   className={cn(
                     "inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 font-medium text-xs tracking-widest uppercase transition-all duration-300",
-                    isLoud ? "bg-[#C9A227] text-glint-charcoal hover:bg-glint-ivory" : "bg-glint-charcoal text-glint-ivory hover:bg-[#8A7336]"
+                    isLoud ? "bg-[#C9A227] text-glint-charcoal hover:bg-glint-ivory" : "bg-[#C9A227] text-white hover:bg-[#8A7336] shadow-sm shadow-[#C9A227]/20"
                   )}
                 >
                   Join WhatsApp Community
