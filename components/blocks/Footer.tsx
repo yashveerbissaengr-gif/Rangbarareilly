@@ -138,42 +138,7 @@ export function Footer({ theme = "core" }: { theme?: "core" | "loud" }) {
           </div>
         </div>
 
-        {/* Accordions for Performance (Zero JS approach via HTML5 details) */}
-        <div className={cn("border-t", borderClass)}>
-          <details className={cn("group border-b", borderClass)}>
-            <summary className={cn("flex justify-between items-center font-medium cursor-pointer list-none py-5 text-sm tracking-wide uppercase transition-colors", hoverClass)}>
-              <span>Jewellery By Colour</span>
-              <span className="transition group-open:rotate-180">
-                <ChevronDown size={18} />
-              </span>
-            </summary>
-            <div className="text-sm opacity-70 pb-5 pt-2 animate-in slide-in-from-top-2 duration-300">
-              <ul className="flex flex-wrap gap-4">
-                <li><Link href="#" className={hoverClass}>Gold</Link></li>
-                <li><Link href="#" className={hoverClass}>Silver</Link></li>
-                <li><Link href="#" className={hoverClass}>Rose Gold</Link></li>
-                <li><Link href="#" className={hoverClass}>Black</Link></li>
-              </ul>
-            </div>
-          </details>
-
-          <details className={cn("group border-b", borderClass)}>
-            <summary className={cn("flex justify-between items-center font-medium cursor-pointer list-none py-5 text-sm tracking-wide uppercase transition-colors", hoverClass)}>
-              <span>Shop By Occasion</span>
-              <span className="transition group-open:rotate-180">
-                <ChevronDown size={18} />
-              </span>
-            </summary>
-            <div className="text-sm opacity-70 pb-5 pt-2 animate-in slide-in-from-top-2 duration-300">
-              <ul className="flex flex-wrap gap-4">
-                <li><Link href="#" className={hoverClass}>Everyday Wear</Link></li>
-                <li><Link href="#" className={hoverClass}>Office Wear</Link></li>
-                <li><Link href="#" className={hoverClass}>Party Wear</Link></li>
-                <li><Link href="#" className={hoverClass}>Weddings</Link></li>
-              </ul>
-            </div>
-          </details>
-        </div>
+        {/* Accordions removed as per request */}
 
         {/* Bottom Bar */}
         <div className="pt-8 mt-4 flex flex-col md:flex-row items-center justify-between gap-4">

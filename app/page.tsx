@@ -42,7 +42,6 @@ export default async function RootPage() {
         <BrandStory theme="loud" />
         <FeaturedCategories products={loudProducts} theme="loud" />
         <Materials theme="loud" />
-        <LovedByCustomers theme="loud" />
         <Testimonials theme="loud" />
       </section>
 
