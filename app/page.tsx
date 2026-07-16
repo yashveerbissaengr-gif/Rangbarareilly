@@ -32,8 +32,6 @@ export default async function RootPage() {
         <BrandStory theme="core" />
         <FeaturedCategories products={coreProducts} theme="core" />
         <Materials theme="core" />
-        <LovedByCustomers theme="core" />
-        <Testimonials theme="core" />
       </section>
 
       {/* LOUD Section */}

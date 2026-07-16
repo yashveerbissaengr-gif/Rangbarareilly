@@ -48,12 +48,8 @@ export function LovedByCustomers({ theme = "core" }: { theme?: "core" | "loud" }
               {/* Product Card Overlay */}
               <div className="absolute bottom-4 left-4 right-4 bg-white rounded-lg p-3 flex items-center gap-3 shadow-lg">
                 <div className="w-12 h-12 bg-gray-100 rounded object-cover flex-none" />
-                <div className="flex-1 min-w-0">
+                <div className="flex-1 min-w-0 flex items-center">
                   <h3 className="text-xs font-semibold text-gray-900 truncate">{item.title}</h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs font-bold text-gray-900">{item.price}</span>
-                    <span className="text-[10px] text-gray-400 line-through">{item.originalPrice}</span>
-                  </div>
                 </div>
                 <button 
                   type="button"
