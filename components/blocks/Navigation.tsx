@@ -40,8 +40,8 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
           <button 
             type="button"
             aria-label="Toggle mobile menu"
-            className={cn("md:hidden", textClass)}
-            onClick={() => alert("Mobile menu coming soon")}
+            className={cn("flex items-center", textClass)}
+            onClick={() => alert("Menu coming soon")}
           >
             <Menu size={24} />
           </button>
