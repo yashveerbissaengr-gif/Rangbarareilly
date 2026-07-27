@@ -7,6 +7,7 @@ import { FeaturedCategories } from "@/components/home/FeaturedCategories";
 import { Materials } from "@/components/home/Materials";
 import { LovedByCustomers } from "@/components/home/LovedByCustomers";
 import { Testimonials } from "@/components/home/Testimonials";
+import { ProductCarousel } from "@/components/home/ProductCarousel";
 import { getProducts } from "@/lib/shopify";
 
 export const metadata = {
@@ -31,6 +32,7 @@ export default async function RootPage() {
         <AnnouncementBar theme="core" />
         <BrandStory theme="core" />
         <FeaturedCategories products={coreProducts} theme="core" />
+        <ProductCarousel title="Best Sellers" products={coreProducts.slice(0, 8)} theme="core" />
         <Materials theme="core" />
       </section>
 
@@ -39,6 +41,7 @@ export default async function RootPage() {
         <AnnouncementBar theme="loud" />
         <BrandStory theme="loud" />
         <FeaturedCategories products={loudProducts} theme="loud" />
+        <ProductCarousel title="New Arrivals" products={loudProducts.slice(0, 8)} theme="loud" />
         <Materials theme="loud" />
       </section>
 
