@@ -6,10 +6,12 @@ import { m, useScroll, useMotionValueEvent } from "framer-motion";
 import { Search, ShoppingBag, Heart, Menu } from "lucide-react";
 import { useCart } from "@/lib/context/CartContext";
 import { cn } from "@/lib/utils";
+import { MenuDrawer } from "./MenuDrawer";
 
 export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { openDrawer, totalItems } = useCart();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -41,7 +43,7 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
             type="button"
             aria-label="Toggle mobile menu"
             className={cn("flex items-center", textClass)}
-            onClick={() => alert("Menu coming soon")}
+            onClick={() => setIsMenuOpen(true)}
           >
             <Menu size={24} />
           </button>
@@ -102,6 +104,12 @@ export function Navigation({ theme = "core" }: { theme?: "core" | "loud" }) {
           </button>
         </div>
       </div>
+
+      <MenuDrawer 
+        isOpen={isMenuOpen} 
+        onClose={() => setIsMenuOpen(false)} 
+        theme={theme}
+      />
     </m.header>
   );
 }
