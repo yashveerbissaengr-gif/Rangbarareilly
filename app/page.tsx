@@ -8,6 +8,7 @@ import { Materials } from "@/components/home/Materials";
 import { LovedByCustomers } from "@/components/home/LovedByCustomers";
 import { Testimonials } from "@/components/home/Testimonials";
 import { ProductCarousel } from "@/components/home/ProductCarousel";
+import { FilterSection } from "@/components/home/FilterSection";
 import { getProducts } from "@/lib/shopify";
 
 export const metadata = {
@@ -44,6 +45,9 @@ export default async function RootPage() {
         <ProductCarousel title="New Arrivals" products={loudProducts.slice(0, 8)} theme="loud" />
         <Materials theme="loud" />
       </section>
+
+      {/* FILTER Section */}
+      <FilterSection products={products} theme="core" />
 
       {/* GLOBAL Section (Pure White) */}
       <section id="global-section" className="w-full bg-[#ffffff] text-glint-charcoal">
