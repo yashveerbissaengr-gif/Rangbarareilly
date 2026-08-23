@@ -34,6 +34,7 @@ export interface Product {
 }
 
 export interface CartItem {
+  lineId?: string;
   product: Product;
   selectedVariant: ProductVariant;
   quantity: number;

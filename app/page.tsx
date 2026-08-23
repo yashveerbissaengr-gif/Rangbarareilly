@@ -1,62 +1,49 @@
-import { Hero } from "@/components/home/Hero";
-import { Navigation } from "@/components/blocks/Navigation";
-import { Footer } from "@/components/blocks/Footer";
-import { AnnouncementBar } from "@/components/home/AnnouncementBar";
-import { BrandStory } from "@/components/home/BrandStory";
-import { FeaturedCategories } from "@/components/home/FeaturedCategories";
-import { Materials } from "@/components/home/Materials";
-import { LovedByCustomers } from "@/components/home/LovedByCustomers";
-import { Testimonials } from "@/components/home/Testimonials";
-import { ProductCarousel } from "@/components/home/ProductCarousel";
-import { FilterSection } from "@/components/home/FilterSection";
-import { getProducts } from "@/lib/shopify";
+import { HeroBanner } from "@/components/home/HeroBanner";
+import { CategoryBubbles } from "@/components/home/CategoryBubbles";
+import { ProductSection } from "@/components/home/ProductSection";
+import { PromoBanner } from "@/components/home/PromoBanner";
+import { ReviewsSection } from "@/components/home/ReviewsSection";
+import { Footer } from "@/components/layout/Footer";
+import { getProducts, getCollection } from "@/lib/shopify";
 
-export const metadata = {
-  title: "GLINT | Small Sparks. Everyday.",
-  description: "Premium minimal jewelry designed for the quiet moments, not just the grand occasions.",
-};
-
-export default async function RootPage() {
-  const products = await getProducts();
-  const coreProducts = products.filter(p => p.tags.includes("core"));
-  const loudProducts = products.filter(p => p.tags.includes("loud"));
+export default async function Home() {
+  // Fetch some products for different sections
+  // Ideally, you'd fetch from specific collections by handle
+  const allProducts = await getProducts();
+  const viralProducts = await getCollection('bracelets');
+  const hotSelling = allProducts.filter(p => p.isBestSeller).slice(0, 4);
+  const newArrivals = allProducts.slice(0, 4);
 
   return (
-    <main className="flex flex-col w-full min-h-screen">
-      {/* Global Navigation for the Homepage */}
-      <Navigation theme="core" />
+    <>
+      <HeroBanner />
+      <CategoryBubbles />
       
-      <Hero />
-      
-      {/* CORE Section */}
-      <section id="core-section" className="w-full bg-[#EAE2D3] text-[#2B2622]">
-        <AnnouncementBar theme="core" />
-        <BrandStory theme="core" />
-        <FeaturedCategories products={coreProducts} theme="core" />
-        <ProductCarousel title="Best Sellers" products={coreProducts.slice(0, 8)} theme="core" />
-        <Materials theme="core" />
-      </section>
+      {/* INSTAGRAM VIRAL FINDS */}
+      <ProductSection 
+        title="Instagram Viral Finds" 
+        products={viralProducts.length > 0 ? viralProducts.slice(0, 4) : allProducts.slice(0, 4)} 
+        viewAllLink="/collections/viral" 
+      />
 
-      {/* LOUD Section */}
-      <section id="loud-section" className="w-full bg-[#2B2622] text-[#EAE2D3]">
-        <AnnouncementBar theme="loud" />
-        <BrandStory theme="loud" />
-        <FeaturedCategories products={loudProducts} theme="loud" />
-        <ProductCarousel title="New Arrivals" products={loudProducts.slice(0, 8)} theme="loud" />
-        <Materials theme="loud" />
-      </section>
+      <PromoBanner />
 
-      {/* FILTER Section */}
-      <FilterSection products={products} theme="core" />
+      {/* NEW ARRIVALS */}
+      <ProductSection 
+        title="New Arrivals" 
+        products={newArrivals.length > 0 ? newArrivals : allProducts.slice(0, 4)} 
+        viewAllLink="/collections/new" 
+      />
 
-      {/* GLOBAL Section (Pure White) */}
-      <section id="global-section" className="w-full bg-[#ffffff] text-glint-charcoal">
-        <LovedByCustomers theme="core" />
-        <Testimonials theme="core" />
-      </section>
+      {/* HOT SELLING */}
+      <ProductSection 
+        title="Hot Selling" 
+        products={hotSelling.length > 0 ? hotSelling : allProducts.slice(0, 4)} 
+        viewAllLink="/collections/hot-selling" 
+      />
 
-      {/* Global Footer */}
-      <Footer theme="core" />
-    </main>
+      <ReviewsSection />
+      <Footer />
+    </>
   );
 }

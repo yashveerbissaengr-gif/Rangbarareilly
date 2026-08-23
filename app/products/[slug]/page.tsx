@@ -1,24 +1,22 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getProduct, getProducts } from '@/lib/shopify';
-import { ImageGallery } from '@/components/products/ImageGallery';
-import { ProductInfo } from '@/components/products/ProductInfo';
-import { RelatedProducts } from '@/components/products/RelatedProducts';
-import { Navigation } from '@/components/blocks/Navigation';
-import { Footer } from '@/components/blocks/Footer';
-import { cn } from '@/lib/utils';
+import Image from 'next/image';
+import { AddToCartButton } from './AddToCartButton';
+import { ProductSection } from '@/components/home/ProductSection';
+import { Footer } from '@/components/layout/Footer';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const product = await getProduct(resolvedParams.slug);
 
   if (!product) {
-    return { title: 'Product Not Found | GLINT' };
+    return { title: 'Product Not Found | Rangbareilly' };
   }
 
   return {
-    title: `${product.title} | GLINT`,
-    description: product.description,
+    title: `${product.title} | Rangbareilly`,
+    description: `Buy ${product.title} at Rangbareilly.`,
   };
 }
 
@@ -30,29 +28,57 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     return notFound();
   }
 
-  // Determine theme based on mock logic (in a real app, this might come from a metafield or tag)
-  const isLoudProduct = product.slug === 'charm-bracelet' || product.slug === 'stack-rings';
-  const theme = isLoudProduct ? "loud" : "core";
-  const bgClass = theme === "loud" ? "bg-[#2B2622]" : "bg-[#F5F2EA]";
-
-  // Fetch all products to pass into related products, excluding the current one
   const allProducts = await getProducts();
-  const relatedProducts = allProducts.filter(p => p.id !== product.id);
+  const relatedProducts = allProducts.filter(p => p.id !== product.id).slice(0, 4);
 
   return (
-    <div className={cn("flex flex-col w-full min-h-screen", bgClass)}>
-      <Navigation theme={theme} />
+    <div className="flex flex-col w-full min-h-screen bg-gray-50">
       
-      {/* Product Details Section - Sticky split layout */}
-      <div className="flex flex-col lg:flex-row w-full max-w-[1600px] mx-auto pt-[73px]">
-        <ImageGallery images={product.images} />
-        <ProductInfo product={product} theme={theme} />
+      <div className="container mx-auto px-4 py-12">
+        <div className="bg-white rounded-2xl shadow-sm p-6 md:p-12 flex flex-col md:flex-row gap-12">
+          {/* Image */}
+          <div className="w-full md:w-1/2 relative aspect-square rounded-xl overflow-hidden bg-gray-100">
+            <Image
+              src={product.images[0]?.url || "/placeholder.svg"}
+              alt={product.title}
+              fill
+              className="object-cover"
+            />
+          </div>
+
+          {/* Info */}
+          <div className="w-full md:w-1/2 flex flex-col justify-center">
+            <span className="text-sm text-[#FF6B6C] font-semibold tracking-wider uppercase mb-2">
+              {product.collection}
+            </span>
+            <h1 className="text-3xl md:text-4xl font-accent font-medium text-gray-900 mb-4">
+              {product.title}
+            </h1>
+            
+            <div className="flex items-end gap-3 mb-8">
+              <span className="text-2xl font-bold text-gray-900">
+                ₹{product.price.toLocaleString()}
+              </span>
+              {product.compareAtPrice && (
+                <span className="text-gray-400 line-through text-lg mb-0.5">
+                  ₹{product.compareAtPrice.toLocaleString()}
+                </span>
+              )}
+            </div>
+
+            <p className="text-gray-600 mb-8 leading-relaxed">
+              Experience the perfect blend of elegance and style with this beautiful piece from our collection. Crafted with precision to complement your everyday look and special occasions.
+            </p>
+
+            <AddToCartButton product={product} />
+          </div>
+        </div>
       </div>
 
       {/* Related Products Section */}
-      <RelatedProducts products={relatedProducts} theme={theme} />
+      <ProductSection title="You May Also Like" products={relatedProducts} />
       
-      <Footer theme={theme} />
+      <Footer />
     </div>
   );
 }

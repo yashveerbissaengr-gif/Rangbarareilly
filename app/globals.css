@@ -1,14 +1,28 @@
 @import "tailwindcss";
-@config "../tailwind.config.ts";
 
-@layer base {
-  body {
-    @apply bg-glint-ivory text-glint-charcoal font-sans antialiased overflow-x-hidden selection:bg-glint-gold selection:text-glint-ivory;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-wide;
-  }
+@theme {
+  --color-rangbareilly-primary: #FF6B6C;
+  --color-rangbareilly-secondary: #8B263E;
+  --color-rangbareilly-accent: #FFEAEA;
+  --color-rangbareilly-dark: #1C1C1C;
+  --color-rangbareilly-gray-text: #4A4A4A;
+  --color-rangbareilly-background: #FFFFFF;
+  --font-sans: var(--font-inter), "Inter", sans-serif;
+  --font-accent: var(--font-caveat), "Caveat", cursive;
+}
+
+body {
+  background-color: var(--color-rangbareilly-background);
+  color: var(--color-rangbareilly-dark);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-rangbareilly-primary);
+  color: #FFFFFF;
 }
 
 /* Base custom scrollbar mimicking global high-end fashion portfolios */
@@ -16,10 +30,10 @@
   width: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #FDFBF7; /* Warm Ivory */
+  background: var(--color-rangbareilly-background);
 }
 ::-webkit-scrollbar-thumb {
-  background: #C8B273; /* Antique Gold */
+  background: var(--color-rangbareilly-primary); /* Primary brand color */
 }
 
 @media (prefers-reduced-motion: reduce) {

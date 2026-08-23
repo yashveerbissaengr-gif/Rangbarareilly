@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display, Bodoni_Moda, Montserrat } from "next/font/google";
+import { Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/lib/context/CartContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { TopBar } from "@/components/layout/TopBar";
+import { Header } from "@/components/layout/Header";
+import { MobileFooterNav } from "@/components/layout/MobileFooterNav";
 import { LazyMotion, domAnimation } from "framer-motion";
 
 const inter = Inter({
@@ -10,24 +13,14 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-});
-
-const bodoni = Bodoni_Moda({
-  variable: "--font-bodoni",
-  subsets: ["latin"],
-});
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const caveat = Caveat({
+  variable: "--font-caveat",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "GLINT | Small Sparks. Everyday.",
-  description: "Premium minimal jewelry brand focused on timeless everyday pieces.",
+  title: "Rangbareilly | Artificial Jewelry Online",
+  description: "High-converting e-commerce store for Rangbareilly.",
 };
 
 export default function RootLayout({
@@ -37,11 +30,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${playfair.variable} ${bodoni.variable} ${montserrat.variable} antialiased min-h-screen flex flex-col bg-glint-ivory`}>
+      <body className={`${inter.variable} ${caveat.variable} antialiased min-h-screen flex flex-col bg-rangbareilly-background`}>
         <LazyMotion features={domAnimation}>
           <CartProvider>
+            <TopBar />
+            <Header />
+            <main className="flex-grow">{children}</main>
+            <MobileFooterNav />
             <CartDrawer />
-            {children}
           </CartProvider>
         </LazyMotion>
       </body>

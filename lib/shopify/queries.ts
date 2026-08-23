@@ -1,20 +1,57 @@
 export const getProductsQuery = `
-  query getProducts($first: Int!) {
-    products(first: $first) {
+  query getProducts($sortKey: ProductSortKeys, $reverse: Boolean, $query: String, $first: Int) {
+    products(sortKey: $sortKey, reverse: $reverse, query: $query, first: $first) {
       edges {
         node {
           id
           handle
+          availableForSale
           title
           description
           descriptionHtml
+          options {
+            id
+            name
+            values
+          }
           priceRange {
+            maxVariantPrice {
+              amount
+              currencyCode
+            }
             minVariantPrice {
               amount
               currencyCode
             }
           }
-          images(first: 2) {
+          variants(first: 250) {
+            edges {
+              node {
+                id
+                title
+                availableForSale
+                selectedOptions {
+                  name
+                  value
+                }
+                price {
+                  amount
+                  currencyCode
+                }
+                compareAtPrice {
+                  amount
+                  currencyCode
+                }
+              }
+            }
+          }
+          featuredImage {
+            url
+            altText
+            width
+            height
+          }
+          images(first: 20) {
             edges {
               node {
                 url
@@ -24,6 +61,12 @@ export const getProductsQuery = `
               }
             }
           }
+          seo {
+            description
+            title
+          }
+          tags
+          updatedAt
         }
       }
     }
@@ -35,16 +78,53 @@ export const getProductQuery = `
     product(handle: $handle) {
       id
       handle
+      availableForSale
       title
       description
       descriptionHtml
+      options {
+        id
+        name
+        values
+      }
       priceRange {
+        maxVariantPrice {
+          amount
+          currencyCode
+        }
         minVariantPrice {
           amount
           currencyCode
         }
       }
-      images(first: 5) {
+      variants(first: 250) {
+        edges {
+          node {
+            id
+            title
+            availableForSale
+            selectedOptions {
+              name
+              value
+            }
+            price {
+              amount
+              currencyCode
+            }
+            compareAtPrice {
+              amount
+              currencyCode
+            }
+          }
+        }
+      }
+      featuredImage {
+        url
+        altText
+        width
+        height
+      }
+      images(first: 20) {
         edges {
           node {
             url
@@ -54,57 +134,71 @@ export const getProductQuery = `
           }
         }
       }
-      variants(first: 250) {
-        edges {
-          node {
-            id
-            title
-            availableForSale
-            price {
-              amount
-              currencyCode
-            }
-          }
-        }
+      seo {
+        description
+        title
       }
+      tags
+      updatedAt
     }
   }
 `;
 
-export const getCollectionQuery = `
-  query getCollection($handle: String!) {
-    collection(handle: $handle) {
+export const getCartQuery = `
+  query getCart($cartId: ID!) {
+    cart(id: $cartId) {
       id
-      handle
-      title
-      description
-      products(first: 50) {
+      checkoutUrl
+      cost {
+        subtotalAmount {
+          amount
+          currencyCode
+        }
+        totalAmount {
+          amount
+          currencyCode
+        }
+        totalTaxAmount {
+          amount
+          currencyCode
+        }
+      }
+      lines(first: 100) {
         edges {
           node {
             id
-            handle
-            title
-            description
-            descriptionHtml
-            priceRange {
-              minVariantPrice {
+            quantity
+            cost {
+              totalAmount {
                 amount
                 currencyCode
               }
             }
-            images(first: 2) {
-              edges {
-                node {
-                  url
-                  altText
-                  width
-                  height
+            merchandise {
+              ... on ProductVariant {
+                id
+                title
+                selectedOptions {
+                  name
+                  value
+                }
+                product {
+                  id
+                  handle
+                  title
+                  featuredImage {
+                    url
+                    altText
+                    width
+                    height
+                  }
                 }
               }
             }
           }
         }
       }
+      totalQuantity
     }
   }
 `;

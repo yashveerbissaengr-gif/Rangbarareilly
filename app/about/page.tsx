@@ -1,25 +1,22 @@
 import { Metadata } from 'next';
 import { Heading, Text } from '@/components/ui/Typography';
-import { Navigation } from '@/components/blocks/Navigation';
-import { Footer } from '@/components/blocks/Footer';
+import { Footer } from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
-  title: 'Our Story | GLINT',
-  description: 'The story behind GLINT fine jewelry.',
+  title: 'Our Story | Rangbareilly',
+  description: 'The story behind Rangbareilly.',
 };
 
 export default function AboutPage() {
   return (
     <div className="flex flex-col w-full min-h-screen bg-[#F5F2EA]">
-      <Navigation theme="core" />
-      
       {/* Hero Section */}
       <div className="w-full flex flex-col items-center text-center px-6 py-32 border-b border-glint-charcoal/10 mt-16">
         <Heading as="h1" className="text-4xl md:text-5xl lg:text-6xl text-glint-charcoal mb-6">
           Small Sparks. Everyday.
         </Heading>
         <Text className="max-w-2xl text-glint-charcoal/80 text-lg">
-          GLINT was founded on a simple premise: fine jewelry shouldn&apos;t be reserved for special occasions. It should be lived in, loved, and worn every single day.
+          Rangbareilly was founded on a simple premise: fine jewelry shouldn&apos;t be reserved for special occasions. It should be lived in, loved, and worn every single day.
         </Text>
       </div>
 
@@ -43,12 +40,12 @@ export default function AboutPage() {
             We believe that true luxury whispers. It doesn&apos;t shout. Our pieces are characterized by clean lines, negative space, and an uncompromising dedication to structural integrity.
           </Text>
           <Text className="text-glint-charcoal/80 leading-relaxed">
-            Every piece of GLINT jewelry is handcrafted using responsibly sourced 14k solid gold and conflict-free diamonds. We design with longevity in mind, ensuring your pieces will outlast fleeting trends and become part of your daily uniform.
+            Every piece of Rangbareilly jewelry is handcrafted. We design with longevity in mind, ensuring your pieces will outlast fleeting trends and become part of your daily uniform.
           </Text>
         </div>
       </div>
       
-      <Footer theme="core" />
+      <Footer />
     </div>
   );
 }
